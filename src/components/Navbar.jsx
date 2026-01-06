@@ -1,9 +1,37 @@
 
-import { FiMenu, FiSearch, FiMoon, FiSun, FiBell, FiGrid } from "react-icons/fi";
+import { useState } from "react";
+import { FiMenu, FiSearch, FiMoon, FiSun, FiBell, FiGrid, FiGlobe } from "react-icons/fi";
 import { useSidebar } from "../context/useSidebar";
 import { useTheme } from "../context/ThemeContext";
-import avatar from "../assets/avatar/avatar_images_3.jpeg";
 
+import avatar from "../assets/avatar/avatar_images_3.jpeg";
+import UkFlag from "../assets/flags/UK_flag.svg";
+import ChineseFlag from "../assets/flags/Chinese_flag.svg";
+import FranceFlag from "../assets/flags/France_flag.svg";
+import ArabicFlag from "../assets/flags/Arabic_flag.svg";
+
+
+const LanguageItem = ({ flagSrc, label }) => (
+    <button
+        className="
+            w-full
+            flex items-center gap-3
+            px-4 py-2
+            text-sm 
+            text-[var(--text-primary)]
+            hover:bg-[var(--icon-hover-bg)]
+            transition
+        "
+    >
+        {/* <span className="text-lg" >{flag}</span> */}
+        <img
+            src={flagSrc}
+            alt={label}
+            className="w-6.5 h-6 rounded-sm object-cover"
+        />
+        <span>{label}</span>
+    </button>
+);
 
 const Navbar = () => {
 
@@ -11,7 +39,9 @@ const Navbar = () => {
 
     const { theme, toggleTheme } = useTheme();
 
-    const iconBtnClass = 
+    const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+
+    const iconBtnClass =
         // "p-2 rounded-full transition-all duration-200 hover:bg-sky-100 hover:text-blue-600";
         "p-2 rounded-full transition-all duration-200 hover:bg-[var(--icon-hover-bg)] hover:text-[var(--icon-hover-text)]";
 
@@ -31,11 +61,9 @@ const Navbar = () => {
                 </button>
             </div>
 
-            {/* CENTER – SEARCH */}
-
 
             {/* RIGHT SIDE */}
-            <div className="flex items-center gap-4">
+            <div className=" flex items-center gap-4">
 
                 {/* <div className="hidden md:flex items-center bg-gray-100 rounded-full px-4 py-2 w-80"> */}
                 <div className="hidden md:flex items-center bg-[var(--bg-card)] border border-[var(--border-color)] rounded-full px-3 py-1.5 w-64">
@@ -48,6 +76,7 @@ const Navbar = () => {
                     />
                 </div>
 
+
                 {/* Theme Toggle */}
                 <button
                     // className="p-2 rounded-md hover:bg-gray-100"
@@ -59,17 +88,51 @@ const Navbar = () => {
                     {theme === "light" ? <FiMoon /> : <FiSun />}
                 </button>
 
+
                 {/* Language */}
                 <button
-                    className={iconBtnClass}
+                    onClick={() => setIsLanguageOpen(prev => !prev)}
+                    className="
+                        relative
+                        w-8 h-8
+                        flex items-center justify-center
+                        rounded-full
+                        transition
+                        hover:bg-[var(--icon-hover-bg)]
+                    "
                 >
+                    {/* <FiGlobe
+                        className="text-lg text-[var(--text-primary)]"
+                    /> */}
+                    {/* <LanguageItem flagSrc={UkFlag}  /> */}
                     <img
-                        src="https://flagcdn.com/w20/gb.png"
-                        alt="EN"
-                        // className="w-5 h-4 rounded-sm"
-                        className="w-5.5 h-5.5 rounded-full"
+                        src={UkFlag}
+                        alt="English"
+                        className="w-5 h-5 object-contain"
                     />
                 </button>
+                {isLanguageOpen && (
+                    <div
+                        className="
+                            absolute
+                            right-0
+                            top-12
+                            translate-x-[-14rem]
+                            translate-y-[1rem]
+                            w-52
+                            rounded-xl
+                            bg-[var(--bg-card)]
+                            shadow
+                            z-50
+                            overflow-hidden
+                        ">
+                        <LanguageItem flagSrc={UkFlag} label="English (UK)" />
+                        <LanguageItem flagSrc={ChineseFlag} label="中文 (Chinese)" />
+                        <LanguageItem flagSrc={FranceFlag} label="Français (French)" />
+                        <LanguageItem flagSrc={ArabicFlag} label="العربية (Arabic)" />
+                    </div>
+                )}
+
 
                 {/* Notifications */}
                 {/* <button className="relative p-2 rounded-md hover:bg-gray-100"> */}
@@ -82,6 +145,7 @@ const Navbar = () => {
                     </span>
                 </button>
 
+
                 {/* Shortcuts */}
                 <button
                     // className="p-2 rounded-md hover:bg-gray-100"
@@ -89,6 +153,7 @@ const Navbar = () => {
                 >
                     <FiGrid size={18} />
                 </button>
+
 
                 {/* Profile */}
                 <div className="flex items-center gap-3 cursor-pointer border-black-500">
@@ -117,6 +182,7 @@ const Navbar = () => {
                         <p className="text-sm text-[var(--text-secondary)] font-semibold">Admin</p>
                     </div>
                 </div>
+
 
             </div>
         </header>

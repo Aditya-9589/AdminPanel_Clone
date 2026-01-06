@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Dashboard from "../pages/Dashboard";
 import Dashboard2 from "../pages/Dashboard2";
+import FrontPages from "../pages/FrontPages";
 
 const AppRoutes = () => {
     return (
@@ -12,6 +13,7 @@ const AppRoutes = () => {
                 <Route path="/" element={<Navigate to="/dashboard" replace />} ></Route>
                 <Route path="/dashboard" element={<Dashboard />} ></Route>
                 <Route path="/dashboard2" element={<Dashboard2 />} ></Route>
+                <Route path="/front-pages" element={<FrontPages />} ></Route>
             </Route>
 
             {/* Fallback  */}

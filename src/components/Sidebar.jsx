@@ -1,7 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { FiHome, FiLayout, FiFileText } from "react-icons/fi";
 import { useSidebar } from "../context/useSidebar";
-import logo from "../assets/avatar/logo_image.png"
+// import logo from "../assets/avatar/logo_image.png"
+import logo from "../assets/avatar/logo_image_5.png"
 
 const Sidebar = () => {
     const { isCollapsed } = useSidebar();
