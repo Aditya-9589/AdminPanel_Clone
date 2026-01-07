@@ -3,6 +3,9 @@ import TotalOrdersChart from "../dashboard/sections/TotalOrdersChart";
 import ProfitDonutChart from "../dashboard/sections/ProfitDonutChart"
 import LatestDealCard from "../dashboard/cards/LatestDealCard"
 import CustomersChart from "../dashboard/sections/CustomersChart";
+import VisitFromUSA from "../dashboard/visitFromUSA/VisitFromUSA";
+import LatestProducts from "../dashboard/latestProducts/LatestProducts";
+
 
 const Dashboard = () => {
     return (
@@ -34,8 +37,11 @@ const Dashboard = () => {
 
             {/* ROW 3 (full width) */}
             <div className="grid grid-cols-12 gap-6">
-                <div className="col-span-12">
-                    {/* Table or large chart */}
+                <div className="col-span-4">
+                    <VisitFromUSA />
+                </div>
+                <div className="col-span-8">
+                    <LatestProducts />
                 </div>
             </div>
 

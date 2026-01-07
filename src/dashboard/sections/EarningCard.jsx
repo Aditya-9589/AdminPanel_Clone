@@ -30,8 +30,8 @@ const EarningCard = () => {
             {/* HEADER  */}
             <div className="flex items-start justify-between mb-4">
                 <div>
-                    <h3 className='text-sm font-semibold text-gray-900' >Earning</h3>
-                    <p className='text-xs text-gray-400' >Last 7 days</p>
+                    <h3 className='text-lg font-semibold text-gray-900' >Earning</h3>
+                    <p className='text-sm text-gray-400' >Last 7 days</p>
                 </div>
 
                 <div className='text-right' >

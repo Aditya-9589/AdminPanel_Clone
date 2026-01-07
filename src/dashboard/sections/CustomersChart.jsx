@@ -27,10 +27,15 @@ const CustomersChart = () => {
                         6,380
                     </p>
                     <span className="
-                        inline-block text-xs font-medium
-                        text-green-600 bg-green-100
+                        inline-flex items-center
+                        text-xs font-medium
+                        text-green-600
+                        bg-green-100
                         border border-green-300
-                        px-2 py-0.5 rounded-full
+                        px-2.5 py-0.5
+                        rounded-full
+                        transition-colors
+                        hover:bg-green-500 hover:text-white
                     ">
                         +28.5%
                     </span>

@@ -1,0 +1,42 @@
+export const productsData = [
+    {
+        id: 1,
+        name: "iPhone 13 Pro Max - Pacific Blue - 128GB",
+        image: "src/assets/latestProductsData/iphone_13_pro_max.png",
+        paid: 180,
+        total: 499,
+        status: "confirmed",
+    },
+    {
+        id: 2,
+        name: "Apple MacBook Pro 13 inch - M1 - 8/256GB",
+        image: "src/assets/latestProductsData/apple_macbook.jpeg",
+        paid: 499,
+        total: 499,
+        status: "confirmed",
+    },
+    {
+        id: 3,
+        name: "PlayStation 5 DualSense Wireless Controller",
+        image: "src/assets/latestProductsData/playstation_5_wireless_controller.jpeg",
+        paid: 100,
+        total: 499,
+        status: "cancelled",
+    },
+    {
+        id: 4,
+        name: "Amazon Basics Mesh, Mid-Back, Swivel Office",
+        image: "src/assets/latestProductsData/swivel_office_chair.jpeg",
+        paid: 250,
+        total: 499,
+        status: "confirmed",
+    },
+    {
+        id: 5,
+        name: "Sony X85J 75 Inch Sony 4K Ultra HD LED Smart",
+        image: "src/assets/latestProductsData/sony_4K_LED_TV.jpeg",
+        paid: 250,
+        total: 499,
+        status: "confirmed",
+    },
+];
