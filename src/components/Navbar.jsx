@@ -47,7 +47,8 @@ const Navbar = () => {
 
     return (
         // <header className="h-16 bg-white shadow-sm rounded-2xl flex items-center justify-between px-6">
-        <header className="h-16 bg-[var(--bg-card)] text-[var(--text-primary)] shadow-sm rounded-2xl flex items-center justify-between px-6">
+        // <header className="h-16 bg-[var(--bg-card)] text-[var(--text-primary)] shadow-sm rounded-xl flex items-center justify-between py-6 px-6">
+        <header className="h-16 bg-[var(--bg-card)] text-[var(--text-primary)] shadow-sm rounded-xl flex items-center justify-between py-6 px-6 sticky top-0 z-40">
 
             {/* LEFT SIDE */}
             <div className="flex items-center gap-4">
@@ -66,13 +67,24 @@ const Navbar = () => {
             <div className=" flex items-center gap-4">
 
                 {/* <div className="hidden md:flex items-center bg-gray-100 rounded-full px-4 py-2 w-80"> */}
-                <div className="hidden md:flex items-center bg-[var(--bg-card)] border border-[var(--border-color)] rounded-full px-3 py-1.5 w-64">
+                <div className="hidden md:flex items-center bg-[var(--bg-card)] 
+                            border border-[var(--border-color)] rounded-full 
+                            px-3 py-1.5 w-64 focus-within:border-gray-400 transition
+                        "
+                >
                     {/* <FiSearch className="text-gray-400 mr-2" /> */}
                     <FiSearch className="text-[var(--text-secondary)] mr-2" />
                     <input
                         type="text"
                         placeholder="Try to searching ..."
-                        className="bg-transparent outline-none text-sm w-full"
+                        className="
+                                bg-transparent
+                                text-sm
+                                w-full
+                                outline-none
+                                focus:outline-none
+                                focus:ring-0
+                            " 
                     />
                 </div>
 
@@ -166,9 +178,6 @@ const Navbar = () => {
                             // src="https://api.dicebear.com/7.x/adventurer/svg?seed=Mike"
                             src={avatar}
                             alt="profile"
-                            // className="w-9 h-9 rounded-full"
-                            // className="w-9 h-9 rounded-full"
-                            // className="w-10 h-10 rounded-full ring-2 ring-indigo-500"
                             className="w-10 h-10 rounded-full ring-2 ring-[var(--icon-hover-text)]"
                         />
 

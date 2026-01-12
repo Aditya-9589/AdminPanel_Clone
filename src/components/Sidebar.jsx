@@ -15,10 +15,16 @@ const Sidebar = () => {
 
     return (
         <aside
-            className={`bg-[var(--bg-card)] text-[var(--text-primary)] 
+            // className={`bg-[var(--bg-card)] text-[var(--text-primary)] 
+            //     shadow-md transition-all duration-300
+            //     ${isCollapsed ? "w-20" : "w-64"}
+            //     h-full rounded-2xl flex flex-col`}
+
+            className={`bg-[var(--bg-card)] text-[var(--text-primary)]
                 shadow-md transition-all duration-300
                 ${isCollapsed ? "w-20" : "w-64"}
-                h-full rounded-2xl flex flex-col`}
+                h-screen overflow-y-auto
+                rounded-2xl flex flex-col`}
         >
 
             {/* Logo  */}
@@ -54,19 +60,60 @@ const Sidebar = () => {
 
                 <nav className="space-y-1">
                     {menuItems.map(({ to, label, icon }) => (
+                        // <NavLink
+                        //     key={to}
+                        //     to={to}
+                        //     className={({ isActive }) =>
+                        //         `flex items-center gap-3 px-4 py-2 rounded-md text-sm font-medium transition
+                        //         ${isActive 
+                        //             ? "bg-[var(--icon-hover-bg)] text-[var(--icon-hover-text)]"
+                        //             : "text-[var(--text-primary)] hover:bg-[var(--icon-hover-bg)] hover:text-[var(--icon-hover-text)]"}`
+                        //     }
+                        // >
+
                         <NavLink
                             key={to}
                             to={to}
-                            className={({ isActive }) =>
-                                `flex items-center gap-3 px-4 py-2 rounded-md text-sm font-medium transition
-                                ${isActive 
-                                    ? "bg-[var(--icon-hover-bg)] text-[var(--icon-hover-text)]"
-                                    : "text-[var(--text-primary)] hover:bg-[var(--icon-hover-bg)] hover:text-[var(--icon-hover-text)]"}`
-                            }
+                            className="group relative overflow-hidden flex items-center gap-3 px-4 py-2 rounded-md text-sm font-medium"
                         >
-                            <span className="text-xl min-w-[24px]">{icon}</span>
-                            {!isCollapsed && <span>{label}</span>}
+                            {({ isActive }) => (
+                                <>
+                                    <span
+                                        className={`
+                                                absolute inset-0 bg-[var(--icon-hover-bg)]
+                                                transform origin-left
+                                                transition-transform duration-300 ease-out
+                                                ${isActive ? "scale-x-100" : "scale-x-0"}
+                                                group-hover:scale-x-100
+                                            `}
+                                    />
+                                    <span
+                                        className={`
+                                                relative z-10 text-xl min-w-[24px]
+                                                ${isActive ? "text-[var(--icon-hover-text)]" : "text-[var(--text-primary)]"}
+                                                group-hover:text-[var(--icon-hover-text)]
+                                                transition-colors duration-300
+                                            `}
+                                    >
+                                        {icon}
+                                    </span>
+
+                                    {!isCollapsed && (
+                                        <span
+                                            className={`
+                                                    relative z-10
+                                                    ${isActive ? "text-[var(--icon-hover-text)]" : "text-[var(--text-primary)]"}
+                                                    group-hover:text-[var(--icon-hover-text)]
+                                                    transition-colors duration-300
+                                                `}
+                                        >
+                                            {label}
+                                        </span>
+                                    )}
+                                </>
+                            )}
                         </NavLink>
+
 
                     ))}
                 </nav>

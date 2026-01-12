@@ -1,3 +1,4 @@
+
 import {
     LineChart,
     Line,
@@ -14,53 +15,61 @@ import { tooltipVariants } from "../../charts/tooltips/Variants";
 
 const TotalOrdersChart = () => {
     return (
-        <div className="bg-white rounded-xl p-6 shadow-sm">
+        <div className="bg-[var(--bg-card)] rounded-xl p-6 shadow-sm w-[48rem]">
 
             {/* HEADER */}
             <div className="flex items-center justify-between mb-6">
                 <div>
-                    <h3 className="text-lg font-semibold text-gray-900">
+                    <h3 className="text-lg font-semibold text-[var(--text-primary)]">
                         Total Orders
                     </h3>
-                    <p className="text-sm text-gray-400">
+                    <p className="text-sm text-[var(--text-secondary)]">
                         Weekly Order Updates
                     </p>
                 </div>
 
-                <button className="text-sm px-3 py-1.5 border rounded-lg text-gray-600 hover:bg-gray-50">
+                <button
+                    className="
+                        text-sm px-3 py-1.5 border rounded-lg
+                        text-[var(--text-secondary)]
+                        border-[var(--border-color)]
+                        hover:bg-[var(--icon-hover-bg)]
+                        hover:text-[var(--icon-hover-text)]
+                        transition-colors
+                    "
+                >
                     This Week
                 </button>
             </div>
 
             {/* CHART */}
-            <div className="h-[260px]">
+            <div className="h-[16.2rem]">
                 <ResponsiveContainer width="100%" height="100%">
                     <LineChart
                         data={totalOrdersLineData}
                         margin={{ top: 10, right: 10, left: -10, bottom: 0 }}
                     >
                         <CartesianGrid
-                            stroke="#E5E7EB"
+                            stroke="var(--chart-grid)"
                             strokeDasharray="3 3"
-                            vertical={true}
-                            horizontal={true}
                         />
 
                         <XAxis
                             dataKey="name"
                             axisLine={false}
                             tickLine={false}
-                            tick={{ fill: "#9CA3AF", fontSize: 12 }}
+                            tick={{ fill: "var(--chart-axis)", fontSize: 12 }}
                         />
 
                         <YAxis
                             axisLine={false}
                             tickLine={false}
-                            tick={{ fill: "#9CA3AF", fontSize: 12 }}
+                            tick={{ fill: "var(--chart-axis)", fontSize: 12 }}
                             tickFormatter={(value) => `${value}k`}
                         />
 
                         <Tooltip
+                            cursor={{ fill: "var(--border-color)" }}
                             content={(props) => (
                                 <BaseTooltip
                                     {...props}
@@ -73,7 +82,7 @@ const TotalOrdersChart = () => {
                         <Line
                             type="monotone"
                             dataKey="previous"
-                            stroke="#38BDF8"
+                            stroke="var(--chart-primary)"
                             strokeWidth={3}
                             dot={false}
                         />
@@ -82,7 +91,7 @@ const TotalOrdersChart = () => {
                         <Line
                             type="monotone"
                             dataKey="current"
-                            stroke="#2563EB"
+                            stroke="var(--chart-secondary)"
                             strokeWidth={3}
                             dot={false}
                         />

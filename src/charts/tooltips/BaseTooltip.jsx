@@ -1,5 +1,3 @@
-// charts/tooltips/BaseTooltip.jsx
-
 const BaseTooltip = ({
     active,
     payload,
@@ -8,21 +6,28 @@ const BaseTooltip = ({
     labelClass = "",
     itemClass = "",
     showName = true,
-    valueFormatter = (v) => (v),
+    valueFormatter = (v) => v,
 }) => {
     if (!active || !payload?.length) return null;
 
     return (
         <div
-            className={`
-                rounded-xl border shadow-lg px-4 py-3
-                bg-white border-gray-200
-                ${className}
-            `}
+            className={`rounded-xl border shadow-lg px-4 py-3 ${className}`}
+            style={{
+                background: "var(--tooltip-bg)",
+                borderColor: "var(--tooltip-border)",
+                color: "var(--tooltip-text)",
+            }}
         >
-            <p className={`text-sm font-semibold mb-2 ${labelClass}`}>
-                {label}
-            </p>
+            {label && (
+                <p
+                    className={`text-sm font-semibold mb-2 ${labelClass}`}
+                    // style={{ color: "var(--text-primary)" }}
+                    style={{ color: "var(--text-text)" }}
+                >
+                    {label}
+                </p>
+            )}
 
             {payload.map((item, idx) => (
                 <div
@@ -36,15 +41,14 @@ const BaseTooltip = ({
                         />
 
                         {showName && (
-                            <span className="capitalize text-gray-500">
+                            <span className="capitalize opacity-80">
                                 {item.name}
                             </span>
                         )}
                     </div>
 
-                    <span className="font-medium text-gray-900">
+                    <span className="font-medium">
                         {valueFormatter(item.value)}
-                        {/* {item.value} */}
                     </span>
                 </div>
             ))}

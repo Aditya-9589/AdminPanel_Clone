@@ -2,30 +2,34 @@
 
 export const tooltipVariants = {
     earning: {
-        className: "bg-white",
-        labelClass: "text-gray-900",
-        itemClass: "text-gray-700",
+        className: "bg-gray-800 border-gray-600 text-white",
+        // className: "bg-gray-600 border-gray-400 text-white",
+        labelClass: "text-white",
+        itemClass: "text-gray-200",
         showName: true,
         valueFormatter: (v) => v,
     },
 
     totalOrders: {
-        className: "bg-white border-gray-200",
-        labelClass: "text-gray-900",
-        itemClass: "text-gray-700",
+        className: "bg-gray-800 border-gray-600 text-white",
+        labelClass: "text-white",
+        itemClass: "text-gray-200",
         showName: false,
         valueFormatter: (v) => `${v}k`,
     },
 
-    orders: {
-        className: "bg-blue-50 border-blue-200",
-        labelClass: "text-blue-900",
-        itemClass: "text-blue-800",
+    profit: {
+        className: "bg-gray-800 border-gray-600 text-white",
+        labelClass: "text-white",
+        itemClass: "text-gray-200",
+        valueFormatter: (v) => `${v}%`,
     },
 
-    profit: {
-        className: "bg-green-50 border-green-200",
-        labelClass: "text-green-900",
-        itemClass: "text-green-800",
+    customers: {
+        className: "bg-gray-800 border-gray-600 text-white",
+        labelClass: "text-white",
+        itemClass: "text-gray-200",
+        showName: true,
+        valueFormatter: (v) => v,
     },
 };

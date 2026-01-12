@@ -7,23 +7,32 @@ const DashboardLayout = () => {
     return (
         <SidebarProvider>
             {/* <div className="min-h-screen bg-gray-100 p-4"> */}
-            <div className="min-h-screen bg-[var(--bg-app)] p-4">
+            {/* <div className="min-h-screen bg-[var(--bg-app)] p-4"> */}
             {/* <div className="min-h-screen bg-#F2F9FD p-4"> */}
 
-                {/* <div className="flex h-full gap-4"> */}
-                <div className="flex h-[calc(100vh-2rem)] gap-4">
+            {/* Root container */}
+            <div className="h-screen w-full bg-[var(--bg-app)] overflow-hidden p-4">
 
+                {/* <div className="flex h-full gap-4"> */}
+                {/* <div className="flex h-[calc(100vh-2rem)] gap-4"> */}
+                <div className="flex h-full gap-4">
+                {/* <div className="flex h-full"> */}
+
+                    {/* SIDEBAR  */}
                     <Sidebar />
 
+                    {/* RIGHT SIDE  */}
                     {/* <div className="flex flex-col flex-1"> */}
+                    {/* <div className="flex flex-col flex-1 gap-4"> */}
                     <div className="flex flex-col flex-1 gap-4">
+                    {/* <div className="flex flex-col flex-1"> */}
 
+                        {/* NAVBAR (sticky later)  */}
                         <Navbar />
-                        {/* <main className="p-6"> */}
-
-                        {/* <main className="flex-1 bg-gray-100 rounded-2xl p-4"> */}
-                        {/* <main className="flex-1 bg-white-100 rounded-2xl p-4"> */}
-                        <main className="flex-1 bg-[var(--bg-app)] rounded-2xl p-4">
+                        
+                        {/* MAIN CONTENT (SCROLLABLE)  */}
+                        {/* <main className="flex-1 bg-[var(--bg-app)] rounded-2xl p-4"> */}
+                        <main className="flex-1 overflow-y-auto rounded-xl p-4">
                             <Outlet />
                         </main>
 

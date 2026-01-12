@@ -1,42 +1,47 @@
+
 import {
     LineChart,
     Line,
     ResponsiveContainer,
     Tooltip,
     Area,
+    XAxis,
 } from "recharts";
-import { customersData } from "../../chartData/CustomersChart"
+import { customersData } from "../../chartData/CustomersChart";
+import BaseTooltip from "../../charts/tooltips/BaseTooltip";
+import { tooltipVariants } from "../../charts/tooltips/Variants";
 
 const CustomersChart = () => {
     return (
-        <div className="bg-white rounded-2xl p-6 shadow-sm w-[360px]">
+        // <div className="bg-[var(--bg-card)] rounded-2xl p-6 shadow-sm w-[20rem]">
+        <div className="bg-[var(--bg-card)] rounded-xl p-6 shadow-sm h-full flex flex-col">
+
 
             {/* HEADER */}
             <div className="flex justify-between items-start mb-4">
                 <div>
-                    <h3 className="text-lg font-semibold text-gray-900">
+                    <h3 className="text-lg font-semibold text-[var(--text-primary)]">
                         Customers
                     </h3>
-                    <p className="text-sm text-gray-400">
+                    <p className="text-sm text-[var(--text-secondary)]">
                         Last 7 Days
                     </p>
                 </div>
 
                 <div className="text-right">
-                    <p className="text-lg font-semibold text-gray-900">
+                    <p className="text-lg font-semibold text-[var(--text-primary)]">
                         6,380
                     </p>
-                    <span className="
-                        inline-flex items-center
-                        text-xs font-medium
-                        text-green-600
-                        bg-green-100
-                        border border-green-300
-                        px-2.5 py-0.5
-                        rounded-full
-                        transition-colors
-                        hover:bg-green-500 hover:text-white
-                    ">
+                    <span
+                        className="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded-full border
+                                bg-green-100 text-green-600 border-green-400
+                        "
+                    // style={{
+                    //     background: "var(--chart-success)",
+                    //     color: "#fff",
+                    //     borderColor: "var(--chart-success)",
+                    // }}
+                    >
                         +28.5%
                     </span>
                 </div>
@@ -49,12 +54,20 @@ const CustomersChart = () => {
                         {/* Gradient */}
                         <defs>
                             <linearGradient id="customersGradient" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stopColor="#007BFF" stopOpacity={0.25} />
-                                <stop offset="100%" stopColor="#007BFF" stopOpacity={0} />
+                                <stop
+                                    offset="0%"
+                                    stopColor="var(--chart-primary)"
+                                    stopOpacity={0.25}
+                                />
+                                <stop
+                                    offset="100%"
+                                    stopColor="var(--chart-primary)"
+                                    stopOpacity={0}
+                                />
                             </linearGradient>
                         </defs>
 
-                        {/* Area (fade) */}
+                        {/* Area */}
                         <Area
                             type="monotone"
                             dataKey="value"
@@ -66,31 +79,47 @@ const CustomersChart = () => {
                         <Line
                             type="monotone"
                             dataKey="value"
-                            stroke="#007BFF"
+                            stroke="var(--chart-primary)"
                             strokeWidth={3}
                             dot={false}
+                            activeDot={{
+                                r: 6,
+                                fill: "var(--chart-primary)",
+                                stroke: "var(--bg-card)",
+                                strokeWidth: 2,
+                            }}
                         />
 
-                        {/* Tooltip (optional, very minimal) */}
+                        {/* Tooltip */}
                         <Tooltip
-                            cursor={false}
-                            content={({ payload }) =>
-                                payload?.length ? (
-                                    <div className="bg-white px-3 py-1 rounded-md shadow text-sm">
-                                        {payload[0].value}
-                                    </div>
-                                ) : null
-                            }
+                            cursor={{
+                                stroke: "var(--chart-axis)",
+                                strokeDasharray: "4 4",
+                            }}
+                            content={(props) => {
+                                const filteredPayload = props.payload?.filter(
+                                    (item) =>
+                                        item.stroke === "var(--chart-primary)"
+                                );
+
+                                return (
+                                    <BaseTooltip
+                                        {...props}
+                                        payload={filteredPayload}
+                                        {...tooltipVariants.customers}
+                                    />
+                                );
+                            }}
                         />
                     </LineChart>
                 </ResponsiveContainer>
             </div>
 
             {/* FOOTER */}
-            <div className="mt-6 text-sm text-gray-500 space-y-1">
+            <div className="mt-6 text-sm text-[var(--text-secondary)] space-y-1">
                 <div className="flex justify-between">
                     <span>April 07 – April 14</span>
-                    <span className="text-gray-400 font-medium">6,380</span>
+                    <span className="font-medium">6,380</span>
                 </div>
                 <div className="flex justify-between">
                     <span>Last Week</span>
@@ -103,3 +132,4 @@ const CustomersChart = () => {
 };
 
 export default CustomersChart;
+

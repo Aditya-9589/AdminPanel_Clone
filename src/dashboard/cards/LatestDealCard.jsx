@@ -1,31 +1,32 @@
+
 const LatestDealCard = () => {
-    const progress = 80; // percentage
+    const progress = 80;
 
     return (
-        <div className="bg-white rounded-2xl p-6 shadow-sm w-full max-w-sm">
+        // <div className="bg-[var(--bg-card)] rounded-2xl p-6 shadow-sm w-full max-w-sm">
+        <div className="bg-[var(--bg-card)] rounded-xl p-6 shadow-sm h-full flex flex-col">
 
             {/* HEADER */}
             <div className="flex justify-between items-start mb-4">
                 <div>
-                    <h3 className="text-lg font-semibold text-gray-900">
+                    <h3 className="text-lg font-semibold text-[var(--text-primary)]">
                         Latest Deal
                     </h3>
-                    <p className="text-sm text-gray-400">
+                    <p className="text-sm text-[var(--text-secondary)]">
                         Last 7 days
                     </p>
                 </div>
 
-                <span className="
-                    inline-flex items-center
-                    text-xs font-medium
-                    text-green-600
-                    bg-green-100
-                    border border-green-300
-                    px-2.5 py-0.5
-                    rounded-full
-                    transition-colors
-                    hover:bg-green-500 hover:text-white
-                ">
+                <span
+                    className="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded-full 
+                            border transition-colors bg-green-100 text-green-600 border-green-400
+                    "
+                // style={{
+                //     background: "var(--chart-success)",
+                //     color: "#fff",
+                //     borderColor: "var(--chart-success)",
+                // }}
+                >
                     86.5%
                 </span>
             </div>
@@ -33,35 +34,37 @@ const LatestDealCard = () => {
             {/* AMOUNTS + PROGRESS */}
             <div className="my-6">
                 <div className="flex justify-between mb-2">
-                    <span className="text-base font-semibold text-gray-900">
+                    <span className="text-base font-semibold text-[var(--text-primary)]">
                         $98,500
                     </span>
-                    <span className="text-base font-semibold text-gray-900">
+                    <span className="text-base font-semibold text-[var(--text-primary)]">
                         $1,22,900
                     </span>
                 </div>
 
                 {/* PROGRESS BAR */}
-                <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div className="w-full h-2 bg-[var(--border-color)] rounded-full overflow-hidden">
                     <div
-                        className="h-full bg-blue-600 rounded-full transition-all"
-                        style={{ width: `${progress}%` }}
+                        className="h-full rounded-full transition-all"
+                        style={{
+                            width: `${progress}%`,
+                            background: "var(--chart-primary)",
+                        }}
                     />
                 </div>
 
-                <p className="text-sm text-gray-500 mt-2 font-medium">
+                <p className="text-sm text-[var(--text-secondary)] mt-2 font-medium">
                     Coupons used: 18/22
                 </p>
             </div>
 
             {/* RECENT PURCHASERS */}
-            <h4 className="text-sm font-semibold text-gray-900 mb-3">
+            <h4 className="text-sm font-semibold text-[var(--text-primary)] mb-3">
                 Recent Purchasers
             </h4>
 
             <div className="flex items-center">
                 {[
-                    // "/assets/user-1.jpg",
                     "https://spike-react-tailwind-main.netlify.app/assets/user-2-idGLMY7R.jpg",
                     "https://spike-react-tailwind-main.netlify.app/assets/user-3-HJ3opN5n.jpg",
                     "https://spike-react-tailwind-main.netlify.app/assets/user-4-Bw2gSpv_.jpg",
@@ -73,7 +76,7 @@ const LatestDealCard = () => {
                         alt="user"
                         className="
                             w-10 h-10 rounded-full
-                            border-2 border-white
+                            border-2 border-[var(--bg-card)]
                             -ml-2 first:ml-0
                             object-cover
                         "
@@ -82,19 +85,17 @@ const LatestDealCard = () => {
 
                 {/* +8 */}
                 <div
-                    className="
-                        w-10 h-10 -ml-2
-                        flex items-center justify-center
-                        rounded-full
-                        bg-blue-50
-                        text-blue-600
-                        text-sm font-semibold
-                        border-2 border-white
-                    "
+                    className="w-10 h-10 -ml-2 flex items-center justify-center rounded-full text-sm font-semibold border-2"
+                    style={{
+                        background: "var(--icon-hover-bg)",
+                        color: "var(--icon-hover-text)",
+                        borderColor: "var(--bg-card)",
+                    }}
                 >
                     +8
                 </div>
             </div>
+
         </div>
     );
 };
