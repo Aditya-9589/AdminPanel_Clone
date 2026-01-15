@@ -1,9 +1,16 @@
 // import ProfitExpensesChart from "./charts/ProfitExpensesChart";
 import { profitExpensesData } from "../../chartData/dashboard2/ProfitExpensesChart"
 import { Tooltip } from "recharts";
-import { tooltipVariants } from "../../charts/tooltips/variants";
+import { tooltipVariants } from "../../charts/tooltips/Variants";
 import { getChartTooltip } from "../../charts/helpers/ChartTooltip";
 
+import ActionMenu from "../../components/ui/ActionMenu";
+
+import {
+    ArrowPathIcon,
+    ChartBarIcon,
+    EyeIcon,
+} from "@heroicons/react/24/outline";
 
 import {
     BarChart,
@@ -28,12 +35,38 @@ const StatRow = ({ label, value, iconBg }) => (
 );
 
 export default function ProfitExpensesCard() {
+
+    const menuItems = [
+        {
+            label: "Refresh data",
+            // label: "Action",
+            icon: <ArrowPathIcon className="h-4 w-4" />,
+            onClick: () => console.log("Refresh traffic"),
+        },
+        {
+            label: "View details",
+            // label: "Some Action",
+            icon: <EyeIcon className="h-4 w-4" />,
+            onClick: () => console.log("View traffic details"),
+        },
+        {
+            label: "Open analytics",
+            // label: "Another Action",
+            icon: <ChartBarIcon className="h-4 w-4" />,
+            onClick: () => console.log("Open analytics"),
+        },
+    ]
+
     return (
         <div className="bg-[var(--color-bg-card)] rounded-2xl p-6 shadow-sm">
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">Profit & Expenses</h3>
-                <span className="text-[var(--text-secondary)]">⋮</span>
+                
+
+                {/* <span className="text-[var(--text-secondary)]">⋮</span> */}
+                <ActionMenu items={menuItems} />
+
             </div>
 
             <div className="grid grid-cols-12 gap-6">

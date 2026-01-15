@@ -19,7 +19,7 @@ export const reviewsData = [
         id: 2,
         product: {
             name: "Apple MacBook Pro 13 inch - M1",
-            image: "src/assets/latestProductsData/apple_macbook.jpeg",
+            image: "src/assets/latestProductsData/apple_macbook.png",
         },
         customer: {
             name: "Jerome Bell",
@@ -35,7 +35,7 @@ export const reviewsData = [
         id: 3,
         product: {
             name: "Apple MacBook Pro 13 inch - M1",
-            image: "src/assets/latestProductsData/playstation_5_wireless_controller.jpeg",
+            image: "src/assets/latestProductsData/playstation_5_wireless_controller.png",
         },
         customer: {
             name: "Jacob Jones",
@@ -51,7 +51,7 @@ export const reviewsData = [
         id: 4,
         product: {
             name: "Apple MacBook Pro 13 inch - M1",
-            image: "src/assets/latestProductsData/swivel_office_chair.jpeg",
+            image: "src/assets/latestProductsData/swivel_office_chair.png",
         },
         customer: {
             name: "Messey Jones",
@@ -67,7 +67,7 @@ export const reviewsData = [
         id: 5,
         product: {
             name: "Apple MacBook Pro 13 inch - M1",
-            image: "src/assets/latestProductsData/sony_4K_LED_TV.jpeg",
+            image: "src/assets/latestProductsData/sony_4K_LED_TV.png",
         },
         customer: {
             name: "Annette Black",

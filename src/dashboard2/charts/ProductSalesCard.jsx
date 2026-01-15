@@ -13,8 +13,39 @@ import { Tooltip } from "recharts";
 import { tooltipVariants } from "../../charts/tooltips/variants";
 import { getChartTooltip } from "../../charts/helpers/ChartTooltip";
 
+import ActionMenu from "../../components/ui/ActionMenu";
+
+import {
+    ArrowPathIcon,
+    ChartBarIcon,
+    EyeIcon,
+} from "@heroicons/react/24/outline";
+
 
 export default function ProductSalesCard() {
+
+    const menuItems = [
+        {
+            label: "Refresh data",
+            // label: "Action",
+            icon: <ArrowPathIcon className="h-4 w-4" />,
+            onClick: () => console.log("Refresh traffic"),
+        },
+        {
+            label: "View details",
+            // label: "Some Action",
+            icon: <EyeIcon className="h-4 w-4" />,
+            onClick: () => console.log("View traffic details"),
+        },
+        {
+            label: "Open analytics",
+            // label: "Another Action",
+            icon: <ChartBarIcon className="h-4 w-4" />,
+            onClick: () => console.log("Open analytics"),
+        },
+    ]
+
+
     return (
         <div className="bg-[var(--color-bg-card)] rounded-2xl p-6 shadow-sm h-full">
             {/* Header */}
@@ -22,7 +53,11 @@ export default function ProductSalesCard() {
                 <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">
                     Product Sales
                 </h3>
-                <span className="text-[var(--text-secondary)] cursor-pointer">⋮</span>
+
+
+                {/* <span className="text-[var(--text-secondary)] cursor-pointer">⋮</span> */}
+                <ActionMenu items={menuItems} />
+
             </div>
 
             {/* Chart */}

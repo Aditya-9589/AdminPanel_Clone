@@ -1,3 +1,9 @@
+import avatar1 from "../../assets/avatar/avatar-1.png";
+import avatar2 from "../../assets/avatar/avatar-2.jpg";
+import avatar3 from "../../assets/avatar/avatar-3.jpg";
+import avatar4 from "../../assets/avatar/avatar-4.jpg";
+
+const avatars = [avatar1, avatar2, avatar3, avatar4];
 
 const LatestDealCard = () => {
     const progress = 80;
@@ -64,12 +70,7 @@ const LatestDealCard = () => {
             </h4>
 
             <div className="flex items-center">
-                {[
-                    "https://spike-react-tailwind-main.netlify.app/assets/user-2-idGLMY7R.jpg",
-                    "https://spike-react-tailwind-main.netlify.app/assets/user-3-HJ3opN5n.jpg",
-                    "https://spike-react-tailwind-main.netlify.app/assets/user-4-Bw2gSpv_.jpg",
-                    "https://spike-react-tailwind-main.netlify.app/assets/user-5-TcGtWTp3.jpg",
-                ].map((src, i) => (
+                {avatars.map((src, i) => (
                     <img
                         key={i}
                         src={src}

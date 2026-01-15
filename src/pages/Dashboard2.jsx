@@ -11,6 +11,8 @@ import TopEmployeesTable from "../dashboard2/tables/TopEmployeesTable";
 import { DollarSign, ArrowDownLeft, TrendingUp } from "lucide-react";
 // import KpiCard from "../dashboard2/cards/KpiCard";
 
+import EngagementSection from "../dashboard2/sections/EngagementSection";
+
 const Dashboard2 = () => {
     return (
         <div className="space-y-6">
@@ -33,7 +35,7 @@ const Dashboard2 = () => {
                             percentage={23}
                             label="Sales"
                             bgColor="bg-blue-600"
-                            // accent="bg-yellow-400"
+                        // accent="bg-yellow-400"
                         />
 
                         <KpiCard
@@ -42,7 +44,7 @@ const Dashboard2 = () => {
                             percentage={8}
                             label="Refunds"
                             bgColor="bg-blue-600"
-                            // accent="bg-orange-400"
+                        // accent="bg-orange-400"
                         />
 
                         <KpiCard
@@ -51,7 +53,7 @@ const Dashboard2 = () => {
                             percentage={-3}
                             label="Earnings"
                             bgColor="bg-blue-600"
-                            // accent="bg-cyan-400"
+                        // accent="bg-cyan-400"
                         />
 
                     </div>
@@ -73,6 +75,15 @@ const Dashboard2 = () => {
             </div>
 
             {/* ================= ROW 3 ================= */}
+            <div className="grid grid-cols-12 gap-6">
+
+                <div className="col-span-12 ">
+                    <EngagementSection />
+                </div>
+
+            </div>
+
+            {/* ================= ROW 4 ================= */}
             <div className="grid grid-cols-12 gap-6">
 
                 <div className="col-span-12 lg:col-span-6">

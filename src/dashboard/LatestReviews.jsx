@@ -1,7 +1,11 @@
 import React from "react";
 import { reviewsData } from "../chartData/LatestReviewsData";
 import ActionMenu from "../components/ui/ActionMenu";
-
+import {
+    PlusIcon,
+    PencilSquareIcon,
+    TrashIcon,
+} from "@heroicons/react/24/outline";
 
 const LatestReviews = () => {
     return (
@@ -101,19 +105,6 @@ const LatestReviews = () => {
                                         "
                                     />
 
-                                    {/* <input
-                                        type="checkbox"
-                                        className="
-                                                h-4 w-4 rounded-md
-                                                border border-[var(--border-color)]
-                                                bg-transparent
-                                                cursor-pointer
-                                                accent-[var(--chart-primary)]
-                                            "
-                                    /> */}
-
-
-
                                 </td>
 
                                 {/* Product */}
@@ -190,25 +181,37 @@ const LatestReviews = () => {
                                     {review.date}
                                 </td>
 
-                                {/* Actions */}
+                                {/* Actions
                                 <td className="py-5 text-right">
-                                    {/* <button className="h-9 w-9 flex items-center justify-center rounded-full hover:bg-[var(--icon-hover-bg)] transition">
-                                        <svg
-                                            className="h-5 w-5 text-[var(--text-secondary)]"
-                                            viewBox="0 0 24 24"
-                                            fill="currentColor"
-                                        >
-                                            <circle cx="12" cy="5" r="1.5" />
-                                            <circle cx="12" cy="12" r="1.5" />
-                                            <circle cx="12" cy="19" r="1.5" />
-                                        </svg>
-                                    </button> */}
                                     <ActionMenu
                                         onAdd={() => console.log("Add review")}
                                         onEdit={() => console.log("Edit review", review.id)}
                                         onDelete={() => console.log("Delete review", review.id)}
                                     />
 
+                                </td> */}
+
+                                <td className="py-5 text-right">
+                                    <ActionMenu
+                                        items={[
+                                            {
+                                                label: "Add",
+                                                icon: <PlusIcon className="h-4 w-4" />,
+                                                onClick: () => console.log("Add"),
+                                            },
+                                            {
+                                                label: "Edit",
+                                                icon: <PencilSquareIcon className="h-4 w-4" />,
+                                                onClick: () => console.log("Edit"),
+                                            },
+                                            {
+                                                label: "Delete",
+                                                icon: <TrashIcon className="h-4 w-4" />,
+                                                danger: true,
+                                                onClick: () => console.log("Delete"),
+                                            },
+                                        ]}
+                                    />
                                 </td>
                             </tr>
                         ))}

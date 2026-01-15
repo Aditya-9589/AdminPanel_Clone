@@ -1,13 +1,6 @@
-
-
 import { useState, useRef, useEffect } from "react";
-import {
-    PlusIcon,
-    PencilSquareIcon,
-    TrashIcon,
-} from "@heroicons/react/24/outline";
 
-const ActionMenu = ({ onAdd, onEdit, onDelete }) => {
+const ActionMenu = ({ items = [] }) => {
     const [open, setOpen] = useState(false);
     const ref = useRef(null);
 
@@ -45,39 +38,22 @@ const ActionMenu = ({ onAdd, onEdit, onDelete }) => {
             {open && (
                 <div
                     className="
-                            absolute right-0 mt-2 w-40 z-50
-                            rounded-lg shadow-lg
-                            bg-[var(--bg-card)]
-                            border border-[var(--border-color)]
-                        "
+                        absolute right-0 mt-2 w-44 z-50
+                        rounded-lg shadow-lg
+                        bg-[var(--bg-card)]
+                        border border-[var(--border-color)]
+                    "
                 >
-                    <MenuItem
-                        icon={<PlusIcon className="h-4 w-4" />}
-                        label="Add"
-                        onClick={() => {
-                            onAdd?.();
-                            setOpen(false);
-                        }}
-                    />
-
-                    <MenuItem
-                        icon={<PencilSquareIcon className="h-4 w-4" />}
-                        label="Edit"
-                        onClick={() => {
-                            onEdit?.();
-                            setOpen(false);
-                        }}
-                    />
-
-                    <MenuItem
-                        icon={<TrashIcon className="h-4 w-4" />}
-                        label="Delete"
-                        danger
-                        onClick={() => {
-                            onDelete?.();
-                            setOpen(false);
-                        }}
-                    />
+                    {items.map((item, index) => (
+                        <MenuItem
+                            key={index}
+                            {...item}
+                            onClick={() => {
+                                item.onClick?.();
+                                setOpen(false);
+                            }}
+                        />
+                    ))}
                 </div>
             )}
         </div>
@@ -87,21 +63,21 @@ const ActionMenu = ({ onAdd, onEdit, onDelete }) => {
 export default ActionMenu;
 
 /* ---------------------------------- */
-/* Menu Item (Reusable) */
+/* Menu Item */
 /* ---------------------------------- */
 const MenuItem = ({ icon, label, onClick, danger }) => (
     <button
         onClick={onClick}
         className={`
-                w-full px-3 py-2
-                flex items-center gap-2
-                text-sm text-left
-                transition
-                ${danger
-                        ? "text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10"
-                        : "text-[var(--text-primary)] hover:bg-[var(--icon-hover-bg)]"
-                    }
-            `}
+            w-full px-3 py-2
+            flex items-center gap-2
+            text-sm text-left
+            transition
+            ${danger
+                ? "text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10"
+                : "text-[var(--text-primary)] hover:bg-[var(--icon-hover-bg)]"
+            }
+        `}
     >
         {icon}
         {label}

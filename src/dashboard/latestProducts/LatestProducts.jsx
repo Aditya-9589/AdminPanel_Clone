@@ -1,6 +1,11 @@
 import React from "react";
 import { productsData } from "../../chartData/LatestProductsData";
 import ActionMenu from "../../components/ui/ActionMenu";
+import {
+    PlusIcon,
+    PencilSquareIcon,
+    TrashIcon,
+} from "@heroicons/react/24/outline";
 
 
 const LatestProducts = () => {
@@ -106,7 +111,7 @@ const LatestProducts = () => {
 
                                     {/* Actions */}
                                     <td className="py-3 text-right">
-                                        <ActionMenu
+                                        {/* <ActionMenu
                                             onAdd={() => console.log("Add product")}
                                             onEdit={() =>
                                                 console.log("Edit product", product.id)
@@ -114,6 +119,27 @@ const LatestProducts = () => {
                                             onDelete={() =>
                                                 console.log("Delete product", product.id)
                                             }
+                                        /> */}
+
+                                        <ActionMenu
+                                            items={[
+                                                {
+                                                    label: "Add",
+                                                    icon: <PlusIcon className="h-4 w-4" />,
+                                                    onClick: () => console.log("Add"),
+                                                },
+                                                {
+                                                    label: "Edit",
+                                                    icon: <PencilSquareIcon className="h-4 w-4" />,
+                                                    onClick: () => console.log("Edit"),
+                                                },
+                                                {
+                                                    label: "Delete",
+                                                    icon: <TrashIcon className="h-4 w-4" />,
+                                                    danger: true,
+                                                    onClick: () => console.log("Delete"),
+                                                },
+                                            ]}
                                         />
                                     </td>
                                 </tr>

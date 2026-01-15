@@ -10,7 +10,7 @@ export const productsData = [
     {
         id: 2,
         name: "Apple MacBook Pro 13 inch - M1 - 8/256GB",
-        image: "src/assets/latestProductsData/apple_macbook.jpeg",
+        image: "src/assets/latestProductsData/apple_macbook.png",
         paid: 499,
         total: 499,
         status: "confirmed",
@@ -18,7 +18,7 @@ export const productsData = [
     {
         id: 3,
         name: "PlayStation 5 DualSense Wireless Controller",
-        image: "src/assets/latestProductsData/playstation_5_wireless_controller.jpeg",
+        image: "src/assets/latestProductsData/playstation_5_wireless_controller.png",
         paid: 100,
         total: 499,
         status: "cancelled",
@@ -26,7 +26,7 @@ export const productsData = [
     {
         id: 4,
         name: "Amazon Basics Mesh, Mid-Back, Swivel Office",
-        image: "src/assets/latestProductsData/swivel_office_chair.jpeg",
+        image: "src/assets/latestProductsData/swivel_office_chair.png",
         paid: 250,
         total: 499,
         status: "confirmed",
@@ -34,7 +34,7 @@ export const productsData = [
     {
         id: 5,
         name: "Sony X85J 75 Inch Sony 4K Ultra HD LED Smart",
-        image: "src/assets/latestProductsData/sony_4K_LED_TV.jpeg",
+        image: "src/assets/latestProductsData/sony_4K_LED_TV.png",
         paid: 250,
         total: 499,
         status: "confirmed",

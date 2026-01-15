@@ -49,4 +49,12 @@ export const tooltipVariants = {
         showName: false,
         valueFormatter: (v) => v,
     },
+
+    traffic: {
+        labelClass: "text-white",
+        itemClass: "text-gray-200",
+        // itemClass: "text-white",
+        showName: true,
+        valueFormatter: (v) => v.toLocaleString(),
+    },
 };
