@@ -32,4 +32,21 @@ export const tooltipVariants = {
         showName: true,
         valueFormatter: (v) => v,
     },
+
+    /* 🔵 Dashboard 2 */
+    profitExpenses: {
+        className: "bg-gray-800 border-gray-600 text-white",
+        labelClass: "text-white",
+        itemClass: "text-gray-200",
+        showName: true,
+        valueFormatter: (v) => `$${v}`,
+    },
+
+    productSales: {
+        className: "bg-gray-800 border-gray-600 text-white",
+        labelClass: "text-white",
+        itemClass: "text-gray-200",
+        showName: false,
+        valueFormatter: (v) => v,
+    },
 };

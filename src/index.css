@@ -26,6 +26,14 @@
     --tooltip-bg: #2f313e;
     --tooltip-border: #1e293b;
     --tooltip-text: #f8fafc;
+
+    /* Dashboard 2  */
+    --color-brand: #078fea;
+    --color-brand-dark: #0d76bb;
+    --color-brand-light: #98cdf0;
+
+    --color-bg-card: #ffffff;
+    --color-text-primary: #0f172a;
 }
 
 [data-theme="dark"] {
@@ -56,6 +64,11 @@
     --tooltip-bg: #151826;
     --tooltip-border: #19212f;
     --tooltip-text: #f8fafc;
+
+
+    /* Dashboard 2 */
+    --color-bg-card: #0b1220;
+    --color-text-primary: #e5e7eb;
 }
 
 body {

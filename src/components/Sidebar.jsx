@@ -10,7 +10,7 @@ const Sidebar = () => {
     const menuItems = [
         { to: "/dashboard", label: "Dashboard 1", icon: <FiHome /> },
         { to: "/dashboard2", label: "Dashboard 2", icon: <FiLayout /> },
-        { to: "/front-pages", label: "Front Pages", icon: <FiFileText /> },
+        // { to: "/front-pages", label: "Front Pages", icon: <FiFileText /> },
     ];
 
     return (
