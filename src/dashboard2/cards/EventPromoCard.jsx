@@ -10,7 +10,6 @@ import gift from "../../assets/gifts/gift.png"
 const avatars = [avatar1, avatar2, avatar3, avatar4];
 
 
-
 export default function EventPromoCard() {
     return (
         <div className="bg-[var(--color-bg-card)] rounded-2xl overflow-hidden shadow-sm h-full flex flex-col">

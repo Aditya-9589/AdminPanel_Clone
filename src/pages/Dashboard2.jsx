@@ -4,9 +4,8 @@ import KpiCard from "../dashboard2/cards/KpiCard";
 import ProfitExpensesChart from "../dashboard2/charts/ProfitExpensesCard";
 import ProductSalesChart from "../dashboard2/charts/ProductSalesCard";
 
-import UpcomingSchedules from "../dashboard2/schedules/UpcomingSchedules";
-
-import TopEmployeesTable from "../dashboard2/tables/TopEmployeesTable";
+import UpcomingSchedules from "../dashboard2/cards/UpcomingSchedules";
+import TopEmployees from "../dashboard2/cards/TopEmployees";
 
 import { DollarSign, ArrowDownLeft, TrendingUp } from "lucide-react";
 // import KpiCard from "../dashboard2/cards/KpiCard";
@@ -86,12 +85,12 @@ const Dashboard2 = () => {
             {/* ================= ROW 4 ================= */}
             <div className="grid grid-cols-12 gap-6">
 
-                <div className="col-span-12 lg:col-span-6">
+                <div className="col-span-12 lg:col-span-4">
                     <UpcomingSchedules />
                 </div>
 
-                <div className="col-span-12 lg:col-span-6">
-                    <TopEmployeesTable />
+                <div className="col-span-12 lg:col-span-8">
+                    <TopEmployees />
                 </div>
 
             </div>
