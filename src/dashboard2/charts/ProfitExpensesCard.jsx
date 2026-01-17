@@ -58,7 +58,7 @@ export default function ProfitExpensesCard() {
     ]
 
     return (
-        <div className="bg-[var(--color-bg-card)] rounded-2xl p-6 shadow-sm">
+        <div className="bg-[var(--bg-card)] rounded-2xl p-6 shadow-sm">
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">Profit & Expenses</h3>

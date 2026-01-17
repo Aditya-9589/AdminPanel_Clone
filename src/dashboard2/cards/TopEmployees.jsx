@@ -137,12 +137,12 @@ const TopEmployees = () => {
                                     </td>
 
                                     {/* Hour Rate */}
-                                    <td className="py-4 px-4 text-[var(--text-primary)]">
+                                    <td className="py-4 px-4 font-medium text-[var(--text-secondary)]">
                                         {emp.rate}
                                     </td>
 
                                     {/* Skills */}
-                                    <td className="py-4 px-4 text-[var(--text-primary)]">
+                                    <td className="py-4 px-4 font-medium text-[var(--text-secondary)]">
                                         {emp.skill}
                                     </td>
 

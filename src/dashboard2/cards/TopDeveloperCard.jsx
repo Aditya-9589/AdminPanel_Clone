@@ -3,7 +3,7 @@ import avatar from "../../assets/avatar/avatar-1.png"
 
 export default function TopDeveloperCard() {
     return (
-        <div className="bg-[var(--color-bg-card)] rounded-2xl p-6 shadow-sm flex-1">
+        <div className="bg-[var(--bg-card)] rounded-2xl p-6 shadow-sm flex-1">
             <div className="flex justify-between items-center">
                 <img
                     // src="/assets/user-3.jpg"

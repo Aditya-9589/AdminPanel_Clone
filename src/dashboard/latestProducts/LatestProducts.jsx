@@ -25,7 +25,7 @@ const LatestProducts = () => {
 
 
             {/* Table Container */}
-            <div className="max-h-[420px] overflow-y-auto latest-products-scroll">
+            <div className="max-h-[420px] overflow-y-auto dashboard-scroll">
 
                 <table className="w-full text-left text-sm">
                     <thead className="border-b border-[var(--border-color)] text-[var(--text-primary)] text-base">

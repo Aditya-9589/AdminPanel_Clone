@@ -7,16 +7,16 @@ export const schedules = [
     {
         title: "Marketing Meeting",
         time: "08:30 - 10:00",
-        color: "border-indigo",
+        color: "border-[var(--chart-primary)]",
     },
     {
         title: "Applied mathematics",
         time: "10:15 - 11:45",
-        color: "border-success",
+        color: "border-[var(--chart-success)]",
     },
     {
         title: "SEO Session with Team",
         time: "12:00 - 13:25",
-        color: "border-error",
+        color: "border-[var(--chart-danger)]",
     },
 ];

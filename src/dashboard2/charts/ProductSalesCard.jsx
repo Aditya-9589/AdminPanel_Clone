@@ -10,7 +10,7 @@ import {
 } from "recharts";
 
 import { Tooltip } from "recharts";
-import { tooltipVariants } from "../../charts/tooltips/variants";
+import { tooltipVariants } from "../../charts/tooltips/Variants";
 import { getChartTooltip } from "../../charts/helpers/ChartTooltip";
 
 import ActionMenu from "../../components/ui/ActionMenu";
@@ -47,7 +47,7 @@ export default function ProductSalesCard() {
 
 
     return (
-        <div className="bg-[var(--color-bg-card)] rounded-2xl p-6 shadow-sm h-full">
+        <div className="bg-[var(--bg-card)] rounded-2xl p-6 shadow-sm h-full">
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">

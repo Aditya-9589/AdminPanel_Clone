@@ -42,7 +42,7 @@ export default function TrafficDistributionCard() {
     ];
 
     return (
-        <div className="bg-[var(--color-bg-card)] rounded-2xl p-6 shadow-sm h-full flex flex-col">
+        <div className="bg-[var(--bg-card)] rounded-2xl p-6 shadow-sm h-full flex flex-col">
             {/* Header */}
             <div className="flex justify-between mb-6">
                 <h5 className="font-semibold text-lg">Traffic Distribution</h5>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { timeSlots, schedules } from '../../chartData/dashboard2/UpcomingSchedulesData'
 
 import avatar1 from "../../assets/avatar/avatar-1.png";
@@ -19,6 +19,8 @@ import {
 
 
 const UpcomingSchedules = () => {
+
+    const [activeTab, setActiveTab] = useState("1 To 3");
 
     const menuItems = [
         {
@@ -41,27 +43,36 @@ const UpcomingSchedules = () => {
         },
     ];
 
+
     return (
         // <div>UpcomingSchedules</div>
 
-        <div className="bg-white dark:bg-dark rounded-2xl p-6 shadow-md h-full">
+        <div className="bg-[var(--bg-card)] rounded-2xl p-6 shadow-md h-full">
 
             {/* HEADER  */}
             <div className="flex justify-between items-center">
-                <h5 className="card-title text-lg font-semibold" >Upcoming Schedule</h5>
+                <h5 className="text-[var(--text-primary)] text-lg font-semibold" >Upcoming Schedule</h5>
                 <button className='h-9 w-9 rounded-full hover:bg-lightprimary flex items-center justify-center' >
-                    
+
                     <ActionMenu items={menuItems} />
 
                 </button>
             </div>
 
             {/* TABS  */}
-            <div className="flex justify-between mt-4 rounded-full shadow-md p-1">
-                {["1 To 3", "4 To 7", "8 To 10"].map((tab, i) => (
+            {/* <div className="flex justify-between mt-4 rounded-full shadow-md p-1"> */}
+            <div className="flex  justify-between mt-4 rounded-full bg-[var(--bg-card)] shadow-xs p-2">
+                {["1 To 3", "4 To 7", "8 To 10"].map((tab) => (
                     <button
                         key={tab}
-                        className={`px-4 py-2 rounded-full font-semibold ${i === 0 ? "bg-primary text-white" : "text-ld"}
+                        onClick={() => setActiveTab(tab)}
+                        className={`
+                            px-5 py-2 rounded-full text-sm font-medium transition
+                            ${
+                                activeTab === tab 
+                                ? "bg-[var(--color-brand)] text-white shadow-sm"
+                                : "text-[var(--text-primary)] ]"
+                            }    
                         `}
                     >
                         {tab}
@@ -70,13 +81,15 @@ const UpcomingSchedules = () => {
             </div>
 
             {/* TIMELINE  */}
-            <div className="max-h-[22rem] overflow-y-auto mt-6" >
+            <div className="max-h-[22rem] overflow-y-auto mt-6 dashboard-scroll" >
                 <div className="grid grid-cols-12 gap-6">
 
                     {/* Time Column  */}
                     <div className="col-span-3 md:col-span-2">
-                        <ul>
-                            {timeSlots.map(t => <li key={t} >{t}</li>)}
+                        <ul className="flex flex-col gap-6 text-sm text-[var(--text-secondary)]" >
+                            {timeSlots.map((t) => (
+                                <li key={t} >{t}</li>
+                            ))}
                         </ul>
                     </div>
 
@@ -85,10 +98,11 @@ const UpcomingSchedules = () => {
                         {schedules.map((item, i) => (
                             <div
                                 key={i}
-                                className={`p-4 shadow-sm border-s-5 ${item.color}`}
+                                // className={`p-4 shadow-sm border-s-5 ${item.color}`}
+                                className={`p-6 shadow-sm border-s-4 rounded-lg ${item.color} my-4`}
                             >
-                                <h6 className="text-base" >{item.title}</h6>
-                                <p className="text-sm text-ld" >{item.time}</p>
+                                <h6 className="text-[var(--text-primary)] font-medium" >{item.title}</h6>
+                                <p className="text-sm text-[var(--text-secondary)]" >{item.time}</p>
 
                                 {/* Avatars  */}
                                 <div className="flex mt-4 ms-2" >

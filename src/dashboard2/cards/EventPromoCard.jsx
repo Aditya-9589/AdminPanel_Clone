@@ -12,7 +12,7 @@ const avatars = [avatar1, avatar2, avatar3, avatar4];
 
 export default function EventPromoCard() {
     return (
-        <div className="bg-[var(--color-bg-card)] rounded-2xl overflow-hidden shadow-sm h-full flex flex-col">
+        <div className="bg-[var(--bg-card)] rounded-2xl overflow-hidden shadow-sm h-full flex flex-col">
             <div className="bg-pink-50 flex justify-center py-6">
                 <img src={gift} alt="promo" />
             </div>
