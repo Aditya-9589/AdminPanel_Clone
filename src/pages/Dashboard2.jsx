@@ -12,6 +12,8 @@ import { DollarSign, ArrowDownLeft, TrendingUp } from "lucide-react";
 
 import EngagementSection from "../dashboard2/sections/EngagementSection";
 
+// import Portal from "../components/portal/Portal"
+
 const Dashboard2 = () => {
     return (
         <div className="space-y-6">
@@ -94,6 +96,17 @@ const Dashboard2 = () => {
                 </div>
 
             </div>
+
+            {/* import Portal from "../components/portal/Portal"; */}
+
+            {/* <Portal>
+                <div className="fixed inset-0 bg-black/40 z-[9999] flex items-center justify-center">
+                    <div className="bg-[var(--bg-card)] p-6 rounded-xl">
+                        Portal works 🎉
+                    </div>
+                </div>
+            </Portal> */}
+
 
         </div>
     );
