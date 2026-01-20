@@ -15,8 +15,12 @@ const ITEMS_PER_PAGE = 10;
 const ProductsTable = () => {
 
     const [currentPage, setCurrentPage] = useState(1);
+
     const [deleteProductId, setDeleteProductId] = useState(null);
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+
+    const [isUpdateOpen, setIsUpdateOpen] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
 
     const totalPages = Math.ceil(productsData.length / ITEMS_PER_PAGE);
@@ -97,7 +101,8 @@ const ProductsTable = () => {
                                 </td>
 
                                 <td className="py-4 text-[var(--text-primary)]">
-                                    {product.price}
+                                    {/* {product.price} */}
+                                    $ {product.price}
                                 </td>
 
                                 {/* Stock badge */}
@@ -124,16 +129,12 @@ const ProductsTable = () => {
                                             {
                                                 label: "Update",
                                                 icon: <PencilSquareIcon className="h-4 w-4" />,
-                                                onClick: () =>
-                                                    console.log("Update product:", product.id),
+                                                onClick: () => {
+                                                    setSelectedProduct(product);
+                                                    setIsUpdateOpen(true);
+                                                    console.log("Update product:", (product.id));
+                                                },
                                             },
-                                            // {
-                                            //     label: "Delete",
-                                            //     icon: <TrashIcon className="h-4 w-4" />,
-                                            //     danger: true,
-                                            //     onClick: () =>
-                                            //         console.log("Delete product:", product.id),
-                                            // },
                                             {
                                                 label: "Delete",
                                                 icon: <TrashIcon className="h-4 w-4" />,
@@ -143,7 +144,7 @@ const ProductsTable = () => {
                                                     setIsDeleteOpen(true);
                                                     console.log("Product Deleted: ", (product.id));
                                                 },
-                                            }
+                                            },
 
                                         ]}
                                     />
@@ -199,8 +200,6 @@ const ProductsTable = () => {
                 </div>
 
             </div>
-
-
 
             <DeleteConfirmPortal
                 open={isDeleteOpen}
