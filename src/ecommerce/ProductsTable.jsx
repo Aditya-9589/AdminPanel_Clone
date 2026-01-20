@@ -8,6 +8,7 @@ import {
     TrashIcon,
 } from "@heroicons/react/24/outline";
 import DeleteConfirmPortal from "../components/portal/DeleteConfirmPortal"
+import UpdateProductModal from "../components/portal/UpdateProductModal";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -213,6 +214,21 @@ const ProductsTable = () => {
                     setDeleteProductId(null);
                 }}
             />
+
+            <UpdateProductModal
+                open={isUpdateOpen}
+                product={selectedProduct}
+                onClose={() => {
+                    setIsUpdateOpen(false);
+                    setSelectedProduct(null);
+                }}
+                onSave={(updatedData) => {
+                    console.log("Updated Product:", selectedProduct.id, updatedData);
+                    setIsUpdateOpen(false);
+                    setSelectedProduct(null);
+                }}
+            />
+
 
         </div >
     );

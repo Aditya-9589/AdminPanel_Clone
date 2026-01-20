@@ -1,9 +1,6 @@
 import { PlusIcon, ArrowDownTrayIcon } from "@heroicons/react/24/outline";
-import { useNavigate } from "react-router-dom";
 
-const ProductsHeader = () => {
-    const navigate = useNavigate();
-
+const ProductsHeader = ({ onAddProduct }) => {
     return (
         <div className="bg-[var(--bg-card)] rounded-2xl p-6 shadow-sm">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -31,7 +28,7 @@ const ProductsHeader = () => {
                     </button>
 
                     <button
-                        onClick={() => navigate("/ecommerce/add-product")}
+                        onClick={onAddProduct}
                         className="flex items-center gap-2 px-4 py-2 rounded-lg
                             bg-[var(--color-brand)] text-white
                             text-sm font-medium hover:opacity-90 transition"

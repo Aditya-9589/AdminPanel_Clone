@@ -1,14 +1,29 @@
-import React from 'react'
+import { useState } from "react";
 import ProductsHeader from "./ProductsHeader";
-import ProductsTable from "./ProductsTable"
+import ProductsTable from "./ProductsTable";
+import AddProductModal from "../components/portal/AddProductModal";
 
 const Ecommerce = () => {
-    return (
-        <div>
-            <ProductsHeader />
-            <ProductsTable />
-        </div>
-    )
-}
+    const [isAddOpen, setIsAddOpen] = useState(false);
 
-export default Ecommerce
+    return (
+        <div className="space-y-6">
+            <ProductsHeader onAddProduct={() => setIsAddOpen(true)} />
+            <ProductsTable />
+
+            {isAddOpen && (
+                <AddProductModal
+                    isOpen={isAddOpen}
+                    onClose={() => setIsAddOpen(false)}
+                    onSubmit={(data) => {
+                        console.log(data);
+                        setIsAddOpen(false);
+                    }}
+                />
+            )}
+
+        </div>
+    );
+};
+
+export default Ecommerce;
