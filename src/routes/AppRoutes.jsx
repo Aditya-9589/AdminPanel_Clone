@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Dashboard from "../pages/Dashboard";
 import Dashboard2 from "../pages/Dashboard2";
-import Users from "../pages/Users";
+import Users from "../pages/UsersWrapper";
 import Ecommerce from "../pages/EcommerceWrapper";
 
 const AppRoutes = () => {

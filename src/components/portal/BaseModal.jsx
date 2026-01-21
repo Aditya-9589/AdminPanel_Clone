@@ -50,7 +50,7 @@ const BaseModal = ({
                 {/* <div className="px-6 py-5 text-sm text-[var(--text-primary)] flex-1 overflow-y-auto dashboard-scroll"> */}
                 <div className="flex-1 overflow-y-auto dashboard-scroll">
                     {children}
-                </div>
+                </div> 
             </div>
         </div>,
         document.getElementById("portal-root")
