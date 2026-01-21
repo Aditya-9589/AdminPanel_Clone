@@ -12,6 +12,7 @@ import UpdateProductModal from "../components/portal/UpdateProductModal";
 
 const ITEMS_PER_PAGE = 10;
 
+const PAGE_WINDOW = 2;
 
 const ProductsTable = () => {
 
@@ -25,6 +26,16 @@ const ProductsTable = () => {
 
 
     const totalPages = Math.ceil(productsData.length / ITEMS_PER_PAGE);
+
+    const startPage = Math.max(
+        1, 
+        currentPage
+    );
+
+    const endPage = Math.min(
+        totalPages,
+        startPage + PAGE_WINDOW - 1
+    );
 
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const currentItems = productsData.slice(
@@ -175,7 +186,7 @@ const ProductsTable = () => {
                             Prev
                         </button>
 
-                        {Array.from({ length: totalPages }).map((_, i) => (
+                        {/* {Array.from({ length: totalPages }).map((_, i) => (
                             <button
                                 key={i}
                                 onClick={() => setCurrentPage(i + 1)}
@@ -186,6 +197,24 @@ const ProductsTable = () => {
                                     }`}
                             >
                                 {i + 1}
+                            </button>
+                        ))} */}
+
+
+                        {Array.from(
+                            { length: endPage - startPage + 1 },
+                            (_, i) => startPage + i
+                        ).map((page) => (
+                            <button
+                                key={page}
+                                onClick={() => setCurrentPage(page)}
+                                className={`px-3 py-1 rounded-md border
+                                    ${currentPage === page
+                                    ? "bg-[var(--color-brand)] text-white"
+                                    : "border-[var(--border-color)] hover:bg-[var(--icon-hover-bg)]"    
+                                }`}
+                            >
+                                {page}
                             </button>
                         ))}
 

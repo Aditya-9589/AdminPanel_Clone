@@ -30,7 +30,7 @@ const UpdateProductModal = ({ open, onClose, product, onSave }) => {
 
     return (
         <BaseModal open={open} onClose={onClose} title="Update Product" size="md">
-            <div className="space-y-5">
+            <div className="space-y-5 p-4">
 
                 {/* Fields */}
                 {["name", "category", "brand", "price"].map((field) => (

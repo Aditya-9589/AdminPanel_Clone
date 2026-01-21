@@ -3,7 +3,7 @@ import BaseModal from "./BaseModal";
 const DeleteConfirmPortal = ({ open, onClose, onConfirm }) => {
     return (
         <BaseModal open={open} onClose={onClose} title="Delete Product" size="sm">
-            <div className="space-y-4">
+            <div className="space-y-4 p-4">
 
                 <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
                     Are you sure you want to delete this product?
