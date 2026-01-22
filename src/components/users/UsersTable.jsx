@@ -7,12 +7,25 @@ import {
     TrashIcon,
 } from "@heroicons/react/24/outline";
 
+import SendNotificationModal from "../portal/SendNotificationModal";
+
 const ITEMS_PER_PAGE = 10;
+
+const PAGE_WINDOW = 2;
 
 const UsersTable = () => {
     const [currentPage, setCurrentPage] = useState(1);
 
+    const [isNotifyOpen, setIsNotifyOpen] = useState(false);
+    const [selectedUser, setSelectedUser] = useState(null);
+
+
     const totalPages = Math.ceil(usersData.length / ITEMS_PER_PAGE);
+    
+    const startPage = Math.floor((currentPage - 1) / PAGE_WINDOW) * PAGE_WINDOW + 1;
+    
+    const endPage = Math.min(startPage + PAGE_WINDOW - 1, totalPages);
+
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const currentItems = usersData.slice(
         startIndex,
@@ -45,25 +58,33 @@ const UsersTable = () => {
             </div>
 
             {/* Table */}
-            <div className="">
-            {/* Table */}
             {/* <div
                 className="
-                    overflow-x-auto
-                    max-h-[70vh]
-                    overflow-y-auto
-                    rounded-xl
+                overflow-x-auto
+                max-h-[70vh]
+                overflow-y-auto
+                rounded-xl
                 "
-            > */}
+                > */}
 
-                <table className="w-full text-sm">
+            {/* Table */}
+            <div className="overflow-x-auto">
+
+                {/* <table className="w-full text-sm"> */}
+                <table className="w-full text-sm min-w-[54rem]">
                     <thead className="border-b border-[var(--border-color)]">
                         <tr className="text-left text-[var(--text-secondary)]">
                             <th className="py-3">User</th>
                             <th className="py-3">Phone</th>
-                            <th className="py-3">Role</th>
+
+                            {/* <th className="py-3">Role</th> */}
+                            <th className="py-3 hidden sm:table-cell">Role</th>
+
                             <th className="py-3">Status</th>
-                            <th className="py-3">Verified</th>
+
+                            {/* <th className="py-3">Verified</th> */}
+                            <th className="py-3 hidden md:table-cell">Verified</th>
+
                             <th className="py-3">Toggle</th>
                             <th className="py-3 text-right">Actions</th>
                         </tr>
@@ -98,7 +119,8 @@ const UsersTable = () => {
                                 </td>
 
                                 {/* Role */}
-                                <td className="py-4 text-[var(--text-primary)]">
+                                {/* <td className="py-4 text-[var(--text-primary)]"> */}
+                                <td className="py-4 hidden sm:table-cell text-[var(--text-primary)]">
                                     {user.role}
                                 </td>
 
@@ -118,7 +140,8 @@ const UsersTable = () => {
                                 </td>
 
                                 {/* Verified */}
-                                <td className="py-4 text-[var(--text-primary)]">
+                                {/* <td className="py-4 text-[var(--text-primary)]"> */}
+                                <td className="py-4 hidden md:table-cell text-[var(--text-primary)]">
                                     {user.verified ? "Yes" : "No"}
                                 </td>
 
@@ -152,24 +175,25 @@ const UsersTable = () => {
                                                 label: "Send Notification",
                                                 icon: <BellIcon className="h-4 w-4" />,
                                                 onClick: () => {
-                                                    console.log("Notify user:", user.id);
+                                                    setSelectedUser(user);
+                                                    setIsNotifyOpen(true);
                                                 },
                                             },
-                                            {
-                                                label: "Update",
-                                                icon: <PencilSquareIcon className="h-4 w-4" />,
-                                                onClick: () => {
-                                                    console.log("Update user:", user.id);
-                                                },
-                                            },
-                                            {
-                                                label: "Delete",
-                                                icon: <TrashIcon className="h-4 w-4" />,
-                                                danger: true,
-                                                onClick: () => {
-                                                    console.log("Delete user:", user.id);
-                                                },
-                                            },
+                                            // {
+                                            //     label: "Update",
+                                            //     icon: <PencilSquareIcon className="h-4 w-4" />,
+                                            //     onClick: () => {
+                                            //         console.log("Update user:", user.id);
+                                            //     },
+                                            // },
+                                            // {
+                                            //     label: "Delete",
+                                            //     icon: <TrashIcon className="h-4 w-4" />,
+                                            //     danger: true,
+                                            //     onClick: () => {
+                                            //         console.log("Delete user:", user.id);
+                                            //     },
+                                            // },
                                         ]}
                                     />
                                 </td>
@@ -179,8 +203,9 @@ const UsersTable = () => {
                     </tbody>
                 </table>
 
+
                 {/* Pagination */}
-                <div className="flex items-center justify-between mt-6 text-sm">
+                {/* <div className="flex items-center justify-between mt-6 text-sm">
                     <p className="text-[var(--text-secondary)]">
                         Showing {startIndex + 1} to{" "}
                         {Math.min(startIndex + ITEMS_PER_PAGE, usersData.length)} of{" "}
@@ -206,9 +231,77 @@ const UsersTable = () => {
                             Next
                         </button>
                     </div>
+                </div> */}
+
+
+                {/* Pagination  */}
+                <div className="flex items-center justify-between mt-6 text-sm">
+                    <p className="text-[var(--text-secondary)]" >
+                        showing {startIndex + 1} to {" "}
+                        {Math.min(startIndex + ITEMS_PER_PAGE, usersData.length)} of {" "}
+                        {usersData.length}
+                    </p>
+
+                    <div className="flex items-center gap-2">
+                        {/* Prev  */}
+                        <button 
+                            disabled={currentPage === 1}
+                            onClick={() => setCurrentPage((p) => p - 1)}
+                            className="px-3 py-1 rounded-md border border-[var(--border-color)]
+                                disabled:opacity-50 hover:bg-[var(--icon-hover-bg)]"
+                        >
+                            Prev
+                        </button>
+
+                        {/* Page Numbers  */}
+                        {Array.from(
+                            { length: endPage - startPage + 1},
+                            (_, i) => startPage + i
+                        ).map((page) => (
+                            <button
+                                key={page}
+                                onClick={() => setCurrentPage(page)}
+                                className={`px-3 py-1 rounded-md border
+                                    ${
+                                        currentPage === page 
+                                        ? "bg-[var(--color-brand)] text-white"
+                                        : "border-[var(--border-color)] hover:bg-[var(--icon-hover-bg)]"
+                                    }`}
+                            >
+                                {page}
+                            </button>
+                        )) }
+
+                        {/* Next  */}
+                        <button 
+                            disabled={currentPage === totalPages}
+                            onClick={() => setCurrentPage((p) => p + 1)}
+                            className="px-3 py-1 rounded-md border border-[var(--border-color)]
+                                disabled:opacity-50 hover:bg-[var(--icon-hover-bg)]"
+                        >
+                            Next
+                        </button>
+                    </div>
                 </div>
 
             </div>
+
+            <SendNotificationModal
+                open={isNotifyOpen}
+                user={selectedUser}
+                onClose={() => {
+                    setIsNotifyOpen(false);
+                    setSelectedUser(null);
+                }}
+                onSend={(message) => {
+                    console.log("Notification sent to:", selectedUser.id);
+                    console.log("Message:", message);
+
+                    setIsNotifyOpen(false);
+                    setSelectedUser(null);
+                }}
+            />
+
         </div>
     );
 };

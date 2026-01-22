@@ -81,6 +81,13 @@
     --bg-input: #0b1220;
 }
 
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+
 body {
     background-color: var(--bg-app);
     color: var(--text-primary);
