@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FiMenu, FiSearch, FiMoon, FiSun, FiBell, FiGrid, FiGlobe } from "react-icons/fi";
 import { useSidebar } from "../context/useSidebar";
 import { useTheme } from "../context/ThemeContext";
+import { useNavigate } from "react-router-dom";
 
 import avatar from "../assets/avatar/avatar_images_3.jpeg";
 import UkFlag from "../assets/flags/UK_flag.svg";
@@ -40,6 +41,10 @@ const Navbar = () => {
     const { theme, toggleTheme } = useTheme();
 
     const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+    const navigate = useNavigate();
 
     const iconBtnClass =
         // "p-2 rounded-full transition-all duration-200 hover:bg-sky-100 hover:text-blue-600";
@@ -84,7 +89,7 @@ const Navbar = () => {
                                 outline-none
                                 focus:outline-none
                                 focus:ring-0
-                            " 
+                            "
                     />
                 </div>
 
@@ -168,8 +173,70 @@ const Navbar = () => {
 
 
                 {/* Profile */}
-                <div className="flex items-center gap-3 cursor-pointer border-black-500">
-                    {/* <div className="relative bg-sky-100 p-1 rounded-full ring-2 ring-sky-200"> */}
+                <div
+                    onClick={() => setIsProfileOpen(prev => !prev)}
+                    className="
+                        relative
+                        flex items-center gap-3 
+                        cursor-pointer 
+                        rounded-lg
+                        px-2 py-1
+                        transition
+                    "
+                >
+
+                    {isProfileOpen && (
+                        <div
+                            className="
+                                absolute
+                                right-6
+                                top-16
+                                w-44
+                                bg-[var(--bg-card)]
+                                border border-[var(--border-color)]
+                                rounded-xl
+                                shadow-lg
+                                z-50
+                                overflow-hidden
+                            "
+                        >
+                            <button
+                                onClick={() => {
+                                    setIsProfileOpen(false);
+                                    navigate("/profile");
+                                }}
+                                className="
+                                    w-full
+                                    px-4 py-2
+                                    text-left
+                                    text-sm
+                                    hover:bg-[var(--icon-hover-bg)]
+                                    transition
+                                "
+                            >
+                                Profile
+                            </button>
+
+                            <button
+                                onClick={() => {
+                                    setIsProfileOpen(false);
+                                    navigate("/login");
+                                }}
+                                className="
+                                    w-full
+                                    px-4 py-2
+                                    text-left
+                                    text-sm
+                                    text-red-500
+                                    hover:bg-[var(--icon-hover-bg)]
+                                    transition
+                                "
+                            >
+                                Logout
+                            </button>
+                        </div>
+                    )}
+
 
                     <div className="relative" >
 

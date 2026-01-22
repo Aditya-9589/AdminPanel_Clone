@@ -21,9 +21,9 @@ const UsersTable = () => {
 
 
     const totalPages = Math.ceil(usersData.length / ITEMS_PER_PAGE);
-    
+
     const startPage = Math.floor((currentPage - 1) / PAGE_WINDOW) * PAGE_WINDOW + 1;
-    
+
     const endPage = Math.min(startPage + PAGE_WINDOW - 1, totalPages);
 
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -57,15 +57,6 @@ const UsersTable = () => {
                 </button>
             </div>
 
-            {/* Table */}
-            {/* <div
-                className="
-                overflow-x-auto
-                max-h-[70vh]
-                overflow-y-auto
-                rounded-xl
-                "
-                > */}
 
             {/* Table */}
             <div className="overflow-x-auto">
@@ -147,25 +138,42 @@ const UsersTable = () => {
 
                                 {/* Toggle (UI only) */}
                                 <td className="py-4">
-                                    <label className="inline-flex items-center cursor-pointer">
+                                    <label className="relative inline-flex items-center cursor-pointer">
+                                        {/* INPUT */}
                                         <input
                                             type="checkbox"
                                             defaultChecked={user.isEnabled}
                                             className="sr-only peer"
                                         />
+
+                                        {/* TRACK */}
                                         <div
-                                            className="w-10 h-5 rounded-full
-                                                bg-gray-300 peer-checked:bg-green-500
-                                                relative transition"
-                                        >
-                                            <span
-                                                className="absolute top-0.5 left-0.5
-                                                    h-4 w-4 bg-white rounded-full
-                                                    transition peer-checked:translate-x-5"
-                                            />
-                                        </div>
+                                            className="
+                                                w-11 h-6
+                                                rounded-full
+                                                bg-red-400
+                                                peer-checked:bg-green-500
+                                                transition-colors duration-300
+                                            "
+                                        />
+
+                                        {/* KNOB (SIBLING, NOT CHILD) */}
+                                        <span
+                                            className="
+                                                absolute left-0.5 top-0.5
+                                                h-5 w-5
+                                                bg-white
+                                                rounded-full
+                                                shadow-md
+                                                transition-transform duration-300
+                                                peer-checked:translate-x-5
+                                            "
+                                        />
                                     </label>
                                 </td>
+
+
+
 
                                 {/* Actions */}
                                 <td className="py-4 text-right">
@@ -204,36 +212,6 @@ const UsersTable = () => {
                 </table>
 
 
-                {/* Pagination */}
-                {/* <div className="flex items-center justify-between mt-6 text-sm">
-                    <p className="text-[var(--text-secondary)]">
-                        Showing {startIndex + 1} to{" "}
-                        {Math.min(startIndex + ITEMS_PER_PAGE, usersData.length)} of{" "}
-                        {usersData.length}
-                    </p>
-
-                    <div className="flex items-center gap-2">
-                        <button
-                            disabled={currentPage === 1}
-                            onClick={() => setCurrentPage((p) => p - 1)}
-                            className="px-3 py-1 rounded-md border border-[var(--border-color)]
-                                disabled:opacity-50 hover:bg-[var(--icon-hover-bg)]"
-                        >
-                            Prev
-                        </button>
-
-                        <button
-                            disabled={currentPage === totalPages}
-                            onClick={() => setCurrentPage((p) => p + 1)}
-                            className="px-3 py-1 rounded-md border border-[var(--border-color)]
-                                disabled:opacity-50 hover:bg-[var(--icon-hover-bg)]"
-                        >
-                            Next
-                        </button>
-                    </div>
-                </div> */}
-
-
                 {/* Pagination  */}
                 <div className="flex items-center justify-between mt-6 text-sm">
                     <p className="text-[var(--text-secondary)]" >
@@ -244,7 +222,7 @@ const UsersTable = () => {
 
                     <div className="flex items-center gap-2">
                         {/* Prev  */}
-                        <button 
+                        <button
                             disabled={currentPage === 1}
                             onClick={() => setCurrentPage((p) => p - 1)}
                             className="px-3 py-1 rounded-md border border-[var(--border-color)]
@@ -255,25 +233,24 @@ const UsersTable = () => {
 
                         {/* Page Numbers  */}
                         {Array.from(
-                            { length: endPage - startPage + 1},
+                            { length: endPage - startPage + 1 },
                             (_, i) => startPage + i
                         ).map((page) => (
                             <button
                                 key={page}
                                 onClick={() => setCurrentPage(page)}
                                 className={`px-3 py-1 rounded-md border
-                                    ${
-                                        currentPage === page 
+                                    ${currentPage === page
                                         ? "bg-[var(--color-brand)] text-white"
                                         : "border-[var(--border-color)] hover:bg-[var(--icon-hover-bg)]"
                                     }`}
                             >
                                 {page}
                             </button>
-                        )) }
+                        ))}
 
                         {/* Next  */}
-                        <button 
+                        <button
                             disabled={currentPage === totalPages}
                             onClick={() => setCurrentPage((p) => p + 1)}
                             className="px-3 py-1 rounded-md border border-[var(--border-color)]

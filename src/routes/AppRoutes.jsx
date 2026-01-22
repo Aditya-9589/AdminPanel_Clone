@@ -5,6 +5,8 @@ import Dashboard from "../pages/Dashboard";
 import Dashboard2 from "../pages/Dashboard2";
 import Users from "../pages/UsersWrapper";
 import Ecommerce from "../pages/EcommerceWrapper";
+import Profile from "../pages/profile/Profile"
+import Login from "../pages/login/login";
 
 const AppRoutes = () => {
     return (
@@ -12,12 +14,12 @@ const AppRoutes = () => {
             {/* Layout Route  */}
             <Route element={<DashboardLayout />}  >
                 <Route path="/" element={<Navigate to="/dashboard" replace />} ></Route>
+                <Route path="/login" element={<Login />} ></Route>
                 <Route path="/dashboard" element={<Dashboard />} ></Route>
                 <Route path="/dashboard2" element={<Dashboard2 />} ></Route>
-                {/* <Route path="/front-pages" element={<FrontPages />} ></Route> */}
                 <Route path="/users" element={<Users />} ></Route>
-                {/* <Route path="/ecommerce" element={<Ecommerce />} ></Route> */}
                 <Route path="/ecommerce" element={<Ecommerce />} ></Route>
+                <Route path="/profile" element={<Profile />} ></Route>
             </Route>
 
             {/* Fallback  */}
