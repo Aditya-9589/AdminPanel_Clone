@@ -38,32 +38,3 @@ const DashboardLayout = () => {
 export default DashboardLayout;
 
 
-// import { Outlet } from "react-router-dom";
-// import Sidebar from "../components/sidebar/Sidebar";
-// import Navbar from "../components/Navbar";
-
-// const DashboardLayout = () => {
-//     return (
-//         <div className="flex h-screen overflow-hidden">
-
-//             {/* Sidebar (fixed) */}
-//             <Sidebar />
-
-//             {/* Right section */}
-//             <div className="flex flex-col flex-1">
-
-//                 {/* Navbar (fixed) */}
-//                 <Navbar />
-
-//                 {/* ONLY SCROLLABLE AREA */}
-//                 <main className="flex-1 overflow-y-auto p-6 dashboard-scroll">
-//                     <Outlet />
-//                 </main>
-
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default DashboardLayout;
-

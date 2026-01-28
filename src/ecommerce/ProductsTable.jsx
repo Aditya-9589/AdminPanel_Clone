@@ -28,7 +28,7 @@ const ProductsTable = () => {
     const totalPages = Math.ceil(productsData.length / ITEMS_PER_PAGE);
 
     const startPage = Math.max(
-        1, 
+        1,
         currentPage
     );
 
@@ -186,19 +186,6 @@ const ProductsTable = () => {
                             Prev
                         </button>
 
-                        {/* {Array.from({ length: totalPages }).map((_, i) => (
-                            <button
-                                key={i}
-                                onClick={() => setCurrentPage(i + 1)}
-                                className={`px-3 py-1 rounded-md border
-                                        ${currentPage === i + 1
-                                        ? "bg-[var(--color-brand)] text-white"
-                                        : "border-[var(--border-color)] hover:bg-[var(--icon-hover-bg)]"
-                                    }`}
-                            >
-                                {i + 1}
-                            </button>
-                        ))} */}
 
 
                         {Array.from(
@@ -210,9 +197,9 @@ const ProductsTable = () => {
                                 onClick={() => setCurrentPage(page)}
                                 className={`px-3 py-1 rounded-md border
                                     ${currentPage === page
-                                    ? "bg-[var(--color-brand)] text-white"
-                                    : "border-[var(--border-color)] hover:bg-[var(--icon-hover-bg)]"    
-                                }`}
+                                        ? "bg-[var(--color-brand)] text-white"
+                                        : "border-[var(--border-color)] hover:bg-[var(--icon-hover-bg)]"
+                                    }`}
                             >
                                 {page}
                             </button>
@@ -231,7 +218,7 @@ const ProductsTable = () => {
 
             </div>
 
-            <DeleteConfirmPortal
+            {/* <DeleteConfirmPortal
                 open={isDeleteOpen}
                 onClose={() => {
                     setIsDeleteOpen(false);
@@ -242,7 +229,24 @@ const ProductsTable = () => {
                     setIsDeleteOpen(false);
                     setDeleteProductId(null);
                 }}
+            /> */}
+
+            <DeleteConfirmPortal
+                open={isDeleteOpen}
+                title="Delete Product"
+                description="Are you sure you want to delete this product?"
+                warningText="This action cannot be undone."
+                onClose={() => {
+                    setIsDeleteOpen(false);
+                    setDeleteProductId(null);
+                }}
+                onConfirm={() => {
+                    console.log("Confirm delete:", deleteProductId);
+                    setIsDeleteOpen(false);
+                    setDeleteProductId(null);
+                }}
             />
+
 
             <UpdateProductModal
                 open={isUpdateOpen}
