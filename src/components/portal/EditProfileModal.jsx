@@ -61,7 +61,7 @@ const EditProfileModal = ({ isOpen, onClose, profile, onSave }) => {
             <div className="bg-[var(--bg-card)] w-full max-w-3xl rounded-2xl relative">
 
                 {/* Header */}
-                <div className="flex justify-between items-start px-6 py-5 border-b">
+                <div className="flex justify-between items-start px-6 py-5 ">
                     <div>
                         <h2 className="text-lg font-semibold">
                             Edit Personal Information
@@ -71,9 +71,21 @@ const EditProfileModal = ({ isOpen, onClose, profile, onSave }) => {
                         </p>
                     </div>
 
-                    <button onClick={onClose}>
+                    <button
+                        onClick={onClose}
+                        className="
+                            p-2
+                            rounded-full
+                            border border-[var(--border-color)]
+                            text-[var(--text-secondary)]
+                            hover:bg-rose-300
+                            hover:text-red-600
+                            transition
+                        "
+                    >
                         <FiX size={22} />
                     </button>
+
                 </div>
 
                 {/* Scrollable Body */}
@@ -234,10 +246,17 @@ const EditProfileModal = ({ isOpen, onClose, profile, onSave }) => {
                 </div>
 
                 {/* Footer */}
-                <div className="flex justify-end gap-3 px-6 py-4 border-t">
+                <div className="flex justify-end gap-3 px-6 py-4">
                     <button
                         onClick={onClose}
-                        className="px-4 py-2 border rounded-lg"
+                        className="
+                            px-4 py-2
+                            rounded-lg
+                            border border-[var(--border-color)]
+                            text-sm font-medium
+                            hover:bg-[var(--icon-hover-bg)]
+                            transition
+                        "
                     >
                         Close
                     </button>

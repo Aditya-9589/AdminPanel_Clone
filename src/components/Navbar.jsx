@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FiMenu, FiSearch, FiMoon, FiSun, FiBell, FiGrid, FiGlobe } from "react-icons/fi";
 import { useSidebar } from "../context/useSidebar";
 import { useTheme } from "../context/ThemeContext";
@@ -44,11 +44,32 @@ const Navbar = () => {
 
     const [isProfileOpen, setIsProfileOpen] = useState(false);
 
+    const profileRef = useRef(null);
+
     const navigate = useNavigate();
 
     const iconBtnClass =
         // "p-2 rounded-full transition-all duration-200 hover:bg-sky-100 hover:text-blue-600";
         "p-2 rounded-full transition-all duration-200 hover:bg-[var(--icon-hover-bg)] hover:text-[var(--icon-hover-text)]";
+
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                profileRef.current &&
+                !profileRef.current.contains(event.target)
+            ) {
+                setIsProfileOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
 
     return (
         // <header className="h-16 bg-white shadow-sm rounded-2xl flex items-center justify-between px-6">
@@ -174,6 +195,7 @@ const Navbar = () => {
 
                 {/* Profile */}
                 <div
+                    ref={profileRef}
                     onClick={() => setIsProfileOpen(prev => !prev)}
                     className="
                         relative
@@ -187,6 +209,7 @@ const Navbar = () => {
 
                     {isProfileOpen && (
                         <div
+                            onClick={(e) => e.stopPropagation()}
                             className="
                                 absolute
                                 right-6

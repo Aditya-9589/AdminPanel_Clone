@@ -7,6 +7,7 @@ import Users from "../pages/UsersWrapper";
 import Ecommerce from "../pages/EcommerceWrapper";
 import Profile from "../pages/profile/Profile"
 import Login from "../pages/login/login";
+import FAQWrapper from "../pages/faq/FAQWrapper";
 
 const AppRoutes = () => {
     return (
@@ -20,6 +21,7 @@ const AppRoutes = () => {
                 <Route path="/users" element={<Users />} ></Route>
                 <Route path="/ecommerce" element={<Ecommerce />} ></Route>
                 <Route path="/profile" element={<Profile />} ></Route>
+                <Route path="/faq" element={<FAQWrapper />} ></Route>
             </Route>
 
             {/* Fallback  */}

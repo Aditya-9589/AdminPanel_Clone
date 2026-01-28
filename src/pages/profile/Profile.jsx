@@ -2,9 +2,14 @@ import ProfileOverviewCard from "../../components/profile/ProfileOverviewCard";
 import PersonalInfoCard from "../../components/profile/PersonalInfoCard"
 import AddressInfoCard from "../../components/profile/AddressInfoCard"
 
+import { useState } from "react";
+import EditProfileModal from "../../components/portal/EditProfileModal";
+
+
 
 const Profile = () => {
-    const adminProfile = {
+
+    const [profile, setProfile] = useState({
         firstName: "Nike",
         lastName: "Nielsen",
         email: "nielsenmike@email.com",
@@ -27,7 +32,10 @@ const Profile = () => {
             linkedin: "#",
             instagram: "#",
         },
-    };
+    });
+
+    const [isEditOpen, setIsEditOpen] = useState(false);
+
 
     return (
         <div className="space-y-6">
@@ -42,27 +50,35 @@ const Profile = () => {
             {/* Overview */}
             <ProfileOverviewCard
                 profile={{
-                    name: `${adminProfile.firstName} ${adminProfile.lastName}`,
-                    role: adminProfile.role,
-                    location: adminProfile.location,
-                    avatar: adminProfile.avatar,
-                    socials: adminProfile.socials,
+                    name: `${profile.firstName} ${profile.lastName}`,
+                    role: profile.role,
+                    location: profile.location,
+                    avatar: profile.avatar,
+                    socials: profile.socials,
                 }}
-                onEdit={() => console.log("Edit overview")}
+                onEdit={() => setIsEditOpen(true)}
             />
 
-            {/* Personal Info */}
             <PersonalInfoCard
-                profile={adminProfile}
-                onEdit={() => console.log("Edit personal info")}
+                profile={profile}
+                onEdit={() => setIsEditOpen(true)}
             />
 
-            {/* Address Info */}
             <AddressInfoCard
-                address={adminProfile.address}
-                onEdit={() => console.log("Edit address info")}
+                address={profile.address}
+                onEdit={() => setIsEditOpen(true)}
             />
+
+            <EditProfileModal
+                isOpen={isEditOpen}
+                profile={profile}
+                onClose={() => setIsEditOpen(false)}
+                onSave={setProfile}
+            />
+
         </div>
+
+
     );
 };
 

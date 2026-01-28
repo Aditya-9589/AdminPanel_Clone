@@ -114,3 +114,7 @@ body {
 .form-input {
     @apply w-full rounded-lg border border-[var(--border-color)] bg-[var(--bg-input)] px-4 py-2 text-sm text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-blue-500;
 }
+
+.input {
+    @apply w-full px-4 py-2.5 text-sm rounded-lg border border-[var(--border-color)] bg-transparent text-[var(--text-primary)] outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition;
+}

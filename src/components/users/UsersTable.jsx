@@ -270,13 +270,23 @@ const UsersTable = () => {
                     setIsNotifyOpen(false);
                     setSelectedUser(null);
                 }}
-                onSend={(message) => {
+                // onSend={(message) => {
+                //     console.log("Notification sent to:", selectedUser.id);
+                //     console.log("Message:", message);
+
+                //     setIsNotifyOpen(false);
+                //     setSelectedUser(null);
+                // }}
+
+                onSend={({ title, message }) => {
                     console.log("Notification sent to:", selectedUser.id);
+                    console.log("Title:", title);
                     console.log("Message:", message);
 
                     setIsNotifyOpen(false);
                     setSelectedUser(null);
                 }}
+
             />
 
         </div>
