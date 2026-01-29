@@ -13,7 +13,7 @@ const AddFAQModal = ({ open, onClose, onSave }) => {
     };
 
     return (
-        <BaseModal open={open} onClose={onClose} title="Add Question & Answer" size="md">
+        <BaseModal open={open} onClose={onClose} title="Add FAQ" size="md">
             <div className="space-y-4 p-4">
 
                 <input

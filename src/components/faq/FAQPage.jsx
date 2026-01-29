@@ -89,7 +89,7 @@ const FAQPage = () => {
             /> */}
             <DeleteConfirmPortal
                 open={isDeleteOpen}
-                title="Delete Question"
+                title="Delete FAQ"
                 description="Are you sure you want to delete this question and answer?"
                 warningText="This action cannot be undone."
                 onClose={() => {
