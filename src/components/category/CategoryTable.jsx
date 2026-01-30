@@ -1,3 +1,5 @@
+
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ActionMenu from "../ui/ActionMenu";
 import {
@@ -8,17 +10,37 @@ import {
 
 import { categoryData } from "../../chartData/category/CategoryData";
 
+const ITEMS_PER_PAGE = 10;
+const PAGE_WINDOW = 2;
+
 const CategoryTable = ({ categoryId, onEdit, onDelete }) => {
     const navigate = useNavigate();
+    const [currentPage, setCurrentPage] = useState(1);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [categoryId]);
 
     // Filter data based on route
     const filteredData = categoryId
         ? categoryData.filter((item) => item.id === categoryId)
         : categoryData;
 
+    const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
+
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const currentItems = filteredData.slice(
+        startIndex,
+        startIndex + ITEMS_PER_PAGE
+    );
+
+    const startPage = Math.max(1, currentPage);
+    const endPage = Math.min(totalPages, startPage + PAGE_WINDOW - 1);
+
     return (
         <div className="mt-4 overflow-x-auto">
 
+            {/* Table  */}
             <table className="w-full text-sm">
                 {/* Table Head */}
                 <thead className="border-b border-[var(--border-color)]">
@@ -32,7 +54,7 @@ const CategoryTable = ({ categoryId, onEdit, onDelete }) => {
 
                 {/* Table Body */}
                 <tbody className="divide-y divide-[var(--border-color)]">
-                    {filteredData.map((item) => (
+                    {currentItems.map((item) => (
                         <tr key={item.id}>
 
                             {/* Product */}
@@ -88,6 +110,57 @@ const CategoryTable = ({ categoryId, onEdit, onDelete }) => {
                     ))}
                 </tbody>
             </table>
+
+            {/* Pagination  */}
+            {filteredData.length > 0 && (
+                <div className="flex items-center justify-between mt-6 text-sm" >
+                    <p className="text-[var(--text-secondary)]" >
+                        showing {startIndex + 1} to {" "}
+                        {Math.min(startIndex + ITEMS_PER_PAGE, filteredData.length)} of{" "}
+                        {filteredData.length}
+                    </p>
+
+                    <div className="flex items-center gap-2" >
+                        <button
+                            disabled={currentPage === 1}
+                            onClick={() => setCurrentPage((p) => p - 1)}
+                            className="px-3 py-1 rounded-md border border-[var(--border-color)]
+                                disabled:opacity-50 hover:bg-[var(--icon-hover-bg)]"
+                        >
+                            Prev
+                        </button>
+
+                        {Array.from(
+                            { length: endPage - startPage + 1 },
+                            (_, i) => startPage + i
+                        ).map((page) => (
+                            <button
+                                key={page}
+                                onClick={() => setCurrentPage(page)}
+                                className={`px-3 py-1 rounded-md border
+                                    ${currentPage === page
+                                        ? "bg-[var(--color-brand)] text-white"
+                                        : "border-[var(--border-color)] hover:bg-[var(--icon-hover-bg)]"
+                                    }
+                                    `}
+                            >
+                                {page}
+                            </button>
+                        ))}
+
+                        <button 
+                            disabled={currentPage === totalPages}
+                            onClick={() => setCurrentPage((p) => p + 1)}
+                            className="px-3 py-1 rounded-md border border-[var(--border-color)]
+                                disabled:opacity-50 hover:bg-[var(--icon-hover-bg)]
+                            "
+                        >
+                            Next
+                        </button>
+                    </div>
+                </div>
+
+            )}
 
             {/* Empty state */}
             {filteredData.length === 0 && (
