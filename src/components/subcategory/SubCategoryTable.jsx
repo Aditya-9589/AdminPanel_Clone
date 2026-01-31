@@ -1,35 +1,29 @@
-
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 import ActionMenu from "../ui/ActionMenu";
 import {
     PencilSquareIcon,
     TrashIcon,
-    EyeIcon,
 } from "@heroicons/react/24/outline";
 
-import { categoryData } from "../../chartData/catalog/CategoryData";
+import { productData } from "../../chartData/catalog/ProductData";
 
 const ITEMS_PER_PAGE = 10;
 const PAGE_WINDOW = 2;
 
-const CategoryTable = ({ categoryId, onEdit, onDelete }) => {
-    const navigate = useNavigate();
+const SubCategoryTable = ({ onEdit, onDelete }) => {
+    const { id: categoryId } = useParams();
     const [currentPage, setCurrentPage] = useState(1);
 
-    useEffect(() => {
-        setCurrentPage(1);
-    }, [categoryId]);
+    // 🔑 Filter products by categoryId
+    const filteredProducts = productData.filter(
+        (item) => item.categoryId === categoryId
+    );
 
-    // Filter data based on route
-    const filteredData = categoryId
-        ? categoryData.filter((item) => item.id === categoryId)
-        : categoryData;
-
-    const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
+    const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
 
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const currentItems = filteredData.slice(
+    const currentItems = filteredProducts.slice(
         startIndex,
         startIndex + ITEMS_PER_PAGE
     );
@@ -40,19 +34,16 @@ const CategoryTable = ({ categoryId, onEdit, onDelete }) => {
     return (
         <div className="mt-4 overflow-x-auto">
 
-            {/* Table  */}
+            {/* TABLE */}
             <table className="w-full text-sm">
-                {/* Table Head */}
                 <thead className="border-b border-[var(--border-color)]">
                     <tr className="text-left text-[var(--text-secondary)]">
                         <th className="py-3">Product</th>
-                        <th className="py-3">Category</th>
                         <th className="py-3">Created</th>
                         <th className="py-3 text-right">Actions</th>
                     </tr>
                 </thead>
 
-                {/* Table Body */}
                 <tbody className="divide-y divide-[var(--border-color)]">
                     {currentItems.map((item) => (
                         <tr key={item.id}>
@@ -62,18 +53,13 @@ const CategoryTable = ({ categoryId, onEdit, onDelete }) => {
                                 <div className="flex items-center gap-3">
                                     <img
                                         src={item.image}
-                                        alt={item.product}
+                                        alt={item.name}
                                         className="h-10 w-10 rounded-md object-cover"
                                     />
                                     <span className="font-medium text-[var(--text-primary)]">
-                                        {item.product}
+                                        {item.name}
                                     </span>
                                 </div>
-                            </td>
-
-                            {/* Category */}
-                            <td className="py-4 text-[var(--text-primary)]">
-                                {item.category}
                             </td>
 
                             {/* Created */}
@@ -85,12 +71,6 @@ const CategoryTable = ({ categoryId, onEdit, onDelete }) => {
                             <td className="py-4 text-right">
                                 <ActionMenu
                                     items={[
-                                        // View only on main category page
-                                        !categoryId && {
-                                            label: "View",
-                                            icon: <EyeIcon className="h-4 w-4" />,
-                                            onClick: () => navigate(`/category/${item.id}`),
-                                        },
                                         {
                                             label: "Edit",
                                             icon: <PencilSquareIcon className="h-4 w-4" />,
@@ -102,7 +82,7 @@ const CategoryTable = ({ categoryId, onEdit, onDelete }) => {
                                             danger: true,
                                             onClick: () => onDelete?.(item),
                                         },
-                                    ].filter(Boolean)}
+                                    ]}
                                 />
                             </td>
 
@@ -111,16 +91,16 @@ const CategoryTable = ({ categoryId, onEdit, onDelete }) => {
                 </tbody>
             </table>
 
-            {/* Pagination  */}
-            {filteredData.length > 0 && (
-                <div className="flex items-center justify-between mt-6 text-sm" >
-                    <p className="text-[var(--text-secondary)]" >
-                        showing {startIndex + 1} to {" "}
-                        {Math.min(startIndex + ITEMS_PER_PAGE, filteredData.length)} of{" "}
-                        {filteredData.length}
+            {/* PAGINATION */}
+            {filteredProducts.length > 0 && (
+                <div className="flex items-center justify-between mt-6 text-sm">
+                    <p className="text-[var(--text-secondary)]">
+                        Showing {startIndex + 1} to{" "}
+                        {Math.min(startIndex + ITEMS_PER_PAGE, filteredProducts.length)} of{" "}
+                        {filteredProducts.length}
                     </p>
 
-                    <div className="flex items-center gap-2" >
+                    <div className="flex items-center gap-2">
                         <button
                             disabled={currentPage === 1}
                             onClick={() => setCurrentPage((p) => p - 1)}
@@ -141,35 +121,32 @@ const CategoryTable = ({ categoryId, onEdit, onDelete }) => {
                                     ${currentPage === page
                                         ? "bg-[var(--color-brand)] text-white"
                                         : "border-[var(--border-color)] hover:bg-[var(--icon-hover-bg)]"
-                                    }
-                                    `}
+                                    }`}
                             >
                                 {page}
                             </button>
                         ))}
 
-                        <button 
+                        <button
                             disabled={currentPage === totalPages}
                             onClick={() => setCurrentPage((p) => p + 1)}
                             className="px-3 py-1 rounded-md border border-[var(--border-color)]
-                                disabled:opacity-50 hover:bg-[var(--icon-hover-bg)]
-                            "
+                                disabled:opacity-50 hover:bg-[var(--icon-hover-bg)]"
                         >
                             Next
                         </button>
                     </div>
                 </div>
-
             )}
 
-            {/* Empty state */}
-            {filteredData.length === 0 && (
+            {/* EMPTY STATE */}
+            {filteredProducts.length === 0 && (
                 <div className="py-10 text-center text-sm text-[var(--text-secondary)]">
-                    No categories found.
+                    No products found for this category.
                 </div>
             )}
         </div>
     );
 };
 
-export default CategoryTable;
+export default SubCategoryTable;

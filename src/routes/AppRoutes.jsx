@@ -24,7 +24,12 @@ const AppRoutes = () => {
                 <Route path="/ecommerce" element={<Ecommerce />} ></Route>
                 <Route path="/profile" element={<Profile />} ></Route>
                 <Route path="/faq" element={<FAQWrapper />} ></Route>
-                <Route path="/category" element={<CategoryWrapper />} ></Route>
+
+                {/* <Route path="/category" element={<CategoryWrapper />} ></Route> */}
+                <Route path="/category" element={<CategoryWrapper />} >
+                    <Route index element={<CategoryWrapper />} ></Route>
+                    <Route path=":id" element={<CategoryWrapper />} ></Route>
+                </Route>
             </Route>
 
             {/* Fallback  */}

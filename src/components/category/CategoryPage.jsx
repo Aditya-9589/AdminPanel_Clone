@@ -3,18 +3,37 @@ import CategoryTable from "./CategoryTable";
 import AddCategoryModal from "../portal/AddCategoryModal"
 import UpdateCategoryModal from "../portal/UpdateCategoryModal";
 import DeleteConfirmPortal from "../portal/DeleteConfirmPortal";
+import SubCategoryTable from "../subcategory/SubCategoryTable";
+import Breadcrumbs from "../common/Breadcrumbs";
+import { productData } from "../../chartData/catalog/ProductData";
 // import CategoryRow from "./CategoryRow";
+
 
 const CategoryPage = ({ categoryId }) => {
 
+    
     const [isAddOpen, setIsAddOpen] = useState(false);
-
+    
     const [isUpdateOpen, setIsUpdateOpen] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+    
+
+    const category = productData.find(c => c.id === categoryId);
+
+    const breadcrumbs = [
+        { label: "Category", to: "/category"},
+        ...(categoryId && category
+            ? [{ label: category.name }]
+            : []
+        ) 
+    ]
 
     return (
         <div className="bg-[var(--bg-card)] rounded-2xl p-6 shadow-sm">
+
+
+            <Breadcrumbs items={breadcrumbs} />
 
             {/* Header */}
             <div className="flex items-start justify-between pb-4 border-b border-[var(--border-color)]">
@@ -37,6 +56,16 @@ const CategoryPage = ({ categoryId }) => {
                 </button>
             </div>
 
+
+            {categoryId && (
+                <SubCategoryTable
+                    categoryId={categoryId}
+                    onEdit={(item) => console.log("Edit subcategory", item)}
+                    onDelete={(item) => console.log("Delete subcategory", item)}
+                />
+            )}
+
+
             {/* <CategoryTable categoryId={categoryId} /> */}
             <CategoryTable
                 categoryId={categoryId}
@@ -49,6 +78,7 @@ const CategoryPage = ({ categoryId }) => {
                     setIsDeleteOpen(true);
                 }}
             />
+
 
             <AddCategoryModal
                 open={isAddOpen}
