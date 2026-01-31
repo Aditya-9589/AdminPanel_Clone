@@ -45,10 +45,16 @@ const CategoryTable = ({ categoryId, onEdit, onDelete }) => {
                 {/* Table Head */}
                 <thead className="border-b border-[var(--border-color)]">
                     <tr className="text-left text-[var(--text-secondary)]">
-                        <th className="py-3">Product</th>
+                        {/* <th className="py-3">Product</th>
                         <th className="py-3">Category</th>
                         <th className="py-3">Created</th>
-                        <th className="py-3 text-right">Actions</th>
+                        <th className="py-3 text-right">Actions</th> */}
+
+                        <th>Image</th>
+                        <th>Category</th>
+                        <th>Created</th>
+                        <th className="text-right">Actions</th>
+
                     </tr>
                 </thead>
 
@@ -60,20 +66,32 @@ const CategoryTable = ({ categoryId, onEdit, onDelete }) => {
                             {/* Product */}
                             <td className="py-4">
                                 <div className="flex items-center gap-3">
-                                    <img
+                                    {/* <img
                                         src={item.image}
                                         alt={item.product}
                                         className="h-10 w-10 rounded-md object-cover"
                                     />
                                     <span className="font-medium text-[var(--text-primary)]">
                                         {item.product}
+                                    </span> */}
+
+                                    <img 
+                                        src={item.image} 
+                                        alt={item.name}
+                                        className="h-10 w-10 rounded-md object-cover" 
+                                    />
+                                    <span className="font-medium text-[var(--text-primary)]" >
+                                        {item.name}
                                     </span>
                                 </div>
                             </td>
 
                             {/* Category */}
-                            <td className="py-4 text-[var(--text-primary)]">
+                            {/* <td className="py-4 text-[var(--text-primary)]">
                                 {item.category}
+                            </td> */}
+                            <td className="text-[var(--text-secondary)]" >
+                                {item.name}
                             </td>
 
                             {/* Created */}
@@ -148,7 +166,7 @@ const CategoryTable = ({ categoryId, onEdit, onDelete }) => {
                             </button>
                         ))}
 
-                        <button 
+                        <button
                             disabled={currentPage === totalPages}
                             onClick={() => setCurrentPage((p) => p + 1)}
                             className="px-3 py-1 rounded-md border border-[var(--border-color)]

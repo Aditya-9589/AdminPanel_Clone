@@ -11,38 +11,52 @@ import { productData } from "../../chartData/catalog/ProductData";
 
 const CategoryPage = ({ categoryId }) => {
 
-    
+
     const [isAddOpen, setIsAddOpen] = useState(false);
-    
+
     const [isUpdateOpen, setIsUpdateOpen] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-    
+
 
     const category = productData.find(c => c.id === categoryId);
 
-    const breadcrumbs = [
-        { label: "Category", to: "/category"},
-        ...(categoryId && category
-            ? [{ label: category.name }]
-            : []
-        ) 
-    ]
+
+    // const breadcrumbs = [
+    //     { label: "Category", to: "/category" },
+    //     ...(categoryId && category
+    //         ? [{ label: "Subcategory" }, { label: category.name }]
+    //         : []
+    //     )
+    // ]
 
     return (
         <div className="bg-[var(--bg-card)] rounded-2xl p-6 shadow-sm">
 
 
-            <Breadcrumbs items={breadcrumbs} />
+            {/* <Breadcrumbs items={breadcrumbs} /> */}
 
             {/* Header */}
             <div className="flex items-start justify-between pb-4 border-b border-[var(--border-color)]">
                 <div>
-                    <h1 className="text-lg font-semibold text-[var(--text-primary)]">
+                    {/* <h1 className="text-lg font-semibold text-[var(--text-primary)]">
                         Category{categoryId ? ` / ${categoryId}` : ""}
+                        Category{category ? ` / ${category.name}` : ""}
                     </h1>
                     <p className="text-sm text-[var(--text-secondary)]">
                         Manage product categories
+                    </p> */}
+
+                    <h1 className="text-lg font-semibold text-[var(--text-primary)]" >
+                        {categoryId ? "Subcategory" : "Category"}
+                        {category ? ` / ${category.name}` : ""}
+                    </h1>
+
+                    <p className="text-sm text-[var(--text-secondary)]" >
+                        {categoryId
+                            ? "Manage subcategories under this category"
+                            : "Manage product categories"
+                        }
                     </p>
                 </div>
 
@@ -52,22 +66,22 @@ const CategoryPage = ({ categoryId }) => {
                             bg-[var(--color-brand)]
                             text-white text-sm font-medium"
                 >
-                    + Add Category
+                    {/* + Add Category */}
+                    + {categoryId ? "Add Subcategory" : "Add Category"}
                 </button>
             </div>
 
 
-            {categoryId && (
+            {/* {categoryId && (
                 <SubCategoryTable
                     categoryId={categoryId}
                     onEdit={(item) => console.log("Edit subcategory", item)}
                     onDelete={(item) => console.log("Delete subcategory", item)}
                 />
-            )}
-
+            )} */}
 
             {/* <CategoryTable categoryId={categoryId} /> */}
-            <CategoryTable
+            {/* <CategoryTable
                 categoryId={categoryId}
                 onEdit={(category) => {
                     setSelectedCategory(category);
@@ -77,7 +91,25 @@ const CategoryPage = ({ categoryId }) => {
                     setSelectedCategory(category);
                     setIsDeleteOpen(true);
                 }}
-            />
+            /> */}
+
+            {categoryId ? (
+                <SubCategoryTable
+                    onEdit={(item) => console.log("Edit product", item)}
+                    onDelete={(item) => console.log("Delete product", item)}
+                />
+            ) : (
+                <CategoryTable
+                    onEdit={(category) => {
+                        setSelectedCategory(category);
+                        setIsUpdateOpen(true);
+                    }}
+                    onDelete={(category) => {
+                        setSelectedCategory(category);
+                        setIsDeleteOpen(true);
+                    }}
+                />
+            )}
 
 
             <AddCategoryModal

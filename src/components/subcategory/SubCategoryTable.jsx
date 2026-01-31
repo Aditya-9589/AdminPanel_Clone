@@ -38,7 +38,8 @@ const SubCategoryTable = ({ onEdit, onDelete }) => {
             <table className="w-full text-sm">
                 <thead className="border-b border-[var(--border-color)]">
                     <tr className="text-left text-[var(--text-secondary)]">
-                        <th className="py-3">Product</th>
+                        {/* <th className="py-3">Product</th> */}
+                        <th className="py-3">Subcategory</th>
                         <th className="py-3">Created</th>
                         <th className="py-3 text-right">Actions</th>
                     </tr>
@@ -142,7 +143,8 @@ const SubCategoryTable = ({ onEdit, onDelete }) => {
             {/* EMPTY STATE */}
             {filteredProducts.length === 0 && (
                 <div className="py-10 text-center text-sm text-[var(--text-secondary)]">
-                    No products found for this category.
+                    {/* No products found for this category. */}
+                    No subcategories found for this category.
                 </div>
             )}
         </div>
