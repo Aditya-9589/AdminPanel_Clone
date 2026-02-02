@@ -9,6 +9,7 @@ import Profile from "../pages/profile/Profile"
 import Login from "../pages/login/login";
 import FAQWrapper from "../pages/faq/FAQWrapper";
 import CategoryWrapper from "../pages/category/CategoryWrapper";
+import CompanyDetailsWrapper from "../pages/companyDetails/CompanyDetailsWrapper";
 
 
 const AppRoutes = () => {
@@ -24,12 +25,12 @@ const AppRoutes = () => {
                 <Route path="/ecommerce" element={<Ecommerce />} ></Route>
                 <Route path="/profile" element={<Profile />} ></Route>
                 <Route path="/faq" element={<FAQWrapper />} ></Route>
-
                 {/* <Route path="/category" element={<CategoryWrapper />} ></Route> */}
                 <Route path="/category" element={<CategoryWrapper />} >
                     <Route index element={<CategoryWrapper />} ></Route>
                     <Route path=":id" element={<CategoryWrapper />} ></Route>
                 </Route>
+                <Route path="/companyDetails" element={<CompanyDetailsWrapper />} ></Route>
             </Route>
 
             {/* Fallback  */}

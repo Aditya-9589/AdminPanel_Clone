@@ -39,6 +39,11 @@ export const sidebarSections = [
                 label: "Category",
                 path: "/category",
                 icon: FiGrid,
+            },
+            {
+                label: "Company Details",
+                path: "/companyDetails",
+                icon: FiGrid,
             }
         ],
     },

@@ -6,7 +6,8 @@ import {
     TrashIcon,
 } from "@heroicons/react/24/outline";
 
-import { productData } from "../../chartData/catalog/ProductData";
+import { categoryData } from "../../chartData/catalog/ProductData";
+// import AddSubCategoryModal from "../portal/AddSubCategoryModal";
 
 const ITEMS_PER_PAGE = 10;
 const PAGE_WINDOW = 2;
@@ -16,7 +17,7 @@ const SubCategoryTable = ({ onEdit, onDelete }) => {
     const [currentPage, setCurrentPage] = useState(1);
 
     // 🔑 Filter products by categoryId
-    const filteredProducts = productData.filter(
+    const filteredProducts = categoryData.filter(
         (item) => item.categoryId === categoryId
     );
 
@@ -147,7 +148,18 @@ const SubCategoryTable = ({ onEdit, onDelete }) => {
                     No subcategories found for this category.
                 </div>
             )}
+
+            {/* <AddSubCategoryModal
+                open={isAddSubOpen}
+                onClose={() => setIsAddSubOpen(false)}
+                onSave={(data) => {
+                    console.log("Add Subcategory:", data);
+                }}
+            /> */}
+
         </div>
+
+
     );
 };
 

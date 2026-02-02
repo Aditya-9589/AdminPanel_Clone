@@ -5,21 +5,26 @@ import UpdateCategoryModal from "../portal/UpdateCategoryModal";
 import DeleteConfirmPortal from "../portal/DeleteConfirmPortal";
 import SubCategoryTable from "../subcategory/SubCategoryTable";
 import Breadcrumbs from "../common/Breadcrumbs";
-import { productData } from "../../chartData/catalog/ProductData";
-// import CategoryRow from "./CategoryRow";
+import { categoryData } from "../../chartData/catalog/ProductData";
+import AddSubCategoryModal from "../portal/AddSubCategoryModal";
+import EditSubCategoryModal from "../portal/EditSubCategoryModal";
 
 
 const CategoryPage = ({ categoryId }) => {
 
 
-    const [isAddOpen, setIsAddOpen] = useState(false);
-
-    const [isUpdateOpen, setIsUpdateOpen] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState(null);
+    const [isAddOpen, setIsAddOpen] = useState(false);
+    const [isUpdateOpen, setIsUpdateOpen] = useState(false);
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
+    const [selectedSubcategory, setSelectedSubcategory] = useState(null);
+    const [isAddSubOpen, setIsAddSubOpen] = useState(false);
+    const [isEditSubOpen, setIsEditSubOpen] = useState(false);
+    const [isDeleteSubOpen, setIsDeleteSubOpen] = useState(false);
 
-    const category = productData.find(c => c.id === categoryId);
+
+    const category = categoryData.find(c => c.id === categoryId);
 
 
     // const breadcrumbs = [
@@ -61,7 +66,10 @@ const CategoryPage = ({ categoryId }) => {
                 </div>
 
                 <button
-                    onClick={() => setIsAddOpen(true)}
+                    // onClick={() => setIsAddOpen(true)}
+                    onClick={() => {
+                        categoryId ? setIsAddSubOpen(true) : setIsAddOpen(true);
+                    }}
                     className="px-4 py-2 rounded-lg
                             bg-[var(--color-brand)]
                             text-white text-sm font-medium"
@@ -72,31 +80,16 @@ const CategoryPage = ({ categoryId }) => {
             </div>
 
 
-            {/* {categoryId && (
-                <SubCategoryTable
-                    categoryId={categoryId}
-                    onEdit={(item) => console.log("Edit subcategory", item)}
-                    onDelete={(item) => console.log("Delete subcategory", item)}
-                />
-            )} */}
-
-            {/* <CategoryTable categoryId={categoryId} /> */}
-            {/* <CategoryTable
-                categoryId={categoryId}
-                onEdit={(category) => {
-                    setSelectedCategory(category);
-                    setIsUpdateOpen(true);
-                }}
-                onDelete={(category) => {
-                    setSelectedCategory(category);
-                    setIsDeleteOpen(true);
-                }}
-            /> */}
-
             {categoryId ? (
                 <SubCategoryTable
-                    onEdit={(item) => console.log("Edit product", item)}
-                    onDelete={(item) => console.log("Delete product", item)}
+                    onEdit={(item) => {
+                        setSelectedSubcategory(item);
+                        setIsEditSubOpen(true);
+                    }}
+                    onDelete={(item) => {
+                        setSelectedSubcategory(item);
+                        setIsDeleteSubOpen(true);
+                    }}
                 />
             ) : (
                 <CategoryTable
@@ -112,6 +105,7 @@ const CategoryPage = ({ categoryId }) => {
             )}
 
 
+
             <AddCategoryModal
                 open={isAddOpen}
                 onClose={() => setIsAddOpen(false)}
@@ -120,6 +114,17 @@ const CategoryPage = ({ categoryId }) => {
                     setIsAddOpen(false);
                 }}
             />
+
+
+            <AddSubCategoryModal
+                open={isAddSubOpen}
+                onClose={() => setIsAddSubOpen(false)}
+                onSave={(data) => {
+                    console.log("Add Subcategory:", data);
+                    setIsAddSubOpen(false);
+                }}
+            />
+
 
             <UpdateCategoryModal
                 open={isUpdateOpen}
@@ -150,6 +155,38 @@ const CategoryPage = ({ categoryId }) => {
                     setSelectedCategory(null);
                 }}
             />
+
+
+            <DeleteConfirmPortal
+                open={isDeleteSubOpen}
+                title="Delete Subcategory"
+                description="Are you sure you want to delete this subcategory?"
+                warningText="This action cannot be undone."
+                onClose={() => {
+                    setIsDeleteSubOpen(false);
+                    setSelectedSubcategory(null);
+                }}
+                onConfirm={() => {
+                    console.log("Deleted Subcategory:", selectedSubcategory);
+                    setIsDeleteSubOpen(false);
+                    setSelectedSubcategory(null);
+                }}
+            />
+
+            <EditSubCategoryModal
+                open={isEditSubOpen}
+                subcategory={selectedSubcategory}
+                onClose={() => {
+                    setIsEditSubOpen(false);
+                    setSelectedSubcategory(null);
+                }}
+                onSave={(updatedSubcategory) => {
+                    console.log("Updated Subcategory:", updatedSubcategory);
+                    setIsEditSubOpen(false);
+                    setSelectedSubcategory(null);
+                }}
+            />
+
 
 
         </div>

@@ -1,4 +1,4 @@
-export const productData = [
+export const categoryData = [
     {
         id: "p1",
         categoryId: "1", // Electronics
