@@ -9,6 +9,7 @@ const DashboardLayout = () => {
 
             {/* Root container */}
             <div className="h-screen w-full bg-[var(--bg-app)] overflow-hidden p-4">
+            {/* <div className="h-screen w-full bg-[var(--bg-app)] overflow-hidden px-4"> */}
 
                 <div className="flex h-full gap-4">
 
@@ -23,6 +24,7 @@ const DashboardLayout = () => {
 
                         {/* MAIN CONTENT (SCROLLABLE)  */}
                         <main className="flex-1 overflow-y-auto rounded-xl p-4">
+                        {/* <main className="flex-1 overflow-y-auto rounded-xl py-4"> */}
                             <Outlet />
                         </main>
 

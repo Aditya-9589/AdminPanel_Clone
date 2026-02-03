@@ -1,4 +1,5 @@
 import React from "react";
+import RichTextEditor from "./editors/RichTextEditor";
 
 const CompanyContentSection = ({ data, onChange }) => {
     return (
@@ -18,10 +19,9 @@ const CompanyContentSection = ({ data, onChange }) => {
 
                 {/* About Us */}
                 <div>
-                    <label className="form-label mb-2">About Us</label>
-
+                    {/* <label className="form-label mb-2">About Us</label> */}
                     {/* Placeholder editor */}
-                    <textarea
+                    {/* <textarea
                         rows={6}
                         placeholder="Write about your company..."
                         value={data.aboutUs}
@@ -30,38 +30,54 @@ const CompanyContentSection = ({ data, onChange }) => {
                             bg-transparent p-4 text-sm
                             focus:outline-none focus:ring-2
                             focus:ring-[var(--color-brand)]"
+                    /> */}
+                    {/* <p className="mt-2 text-xs text-[var(--text-secondary)]">
+                        This content appears on your public About page.
+                    </p> */}
+
+
+                    <RichTextEditor
+                        label="About Us"
+                        value={data.aboutUs}
+                        onChange={(html) => onChange({ aboutUs: html })}
+                        helperText="This content appears on your public About page."
                     />
 
-                    <p className="mt-2 text-xs text-[var(--text-secondary)]">
-                        This content appears on your public About page.
-                    </p>
                 </div>
 
                 {/* Company Policy */}
                 <div>
-                    <label className="form-label mb-2">Company Policy</label>
+                    {/* <label className="form-label mb-2">Company Policy</label> */}
 
-                    <textarea
+                    {/* <textarea
                         rows={6}
                         placeholder="Write company policies..."
                         value={data.companyPolicy}
-                        onChange={(e) => onChange({ companyPolicy:  e.target.value })}
+                        onChange={(e) => onChange({ companyPolicy: e.target.value })}
                         className="w-full rounded-xl border border-[var(--border-color)]
                             bg-transparent p-4 text-sm
                             focus:outline-none focus:ring-2
                             focus:ring-[var(--color-brand)]"
+                    /> */}
+                    {/* <p className="mt-2 text-xs text-[var(--text-secondary)]">
+                        Terms, rules, and internal policies shown to users.
+                    </p> */}
+
+
+                    <RichTextEditor
+                        label="Company Policy"
+                        value={data.companyPolicy}
+                        onChange={(html) => onChange({ companyPolicy: html })}
+                        helperText="Terms, rules, and internal policies shown to users."
                     />
 
-                    <p className="mt-2 text-xs text-[var(--text-secondary)]">
-                        Terms, rules, and internal policies shown to users.
-                    </p>
                 </div>
 
                 {/* Help & Support */}
                 <div>
-                    <label className="form-label mb-2">Help & Support</label>
+                    {/* <label className="form-label mb-2">Help & Support</label> */}
 
-                    <textarea
+                    {/* <textarea
                         rows={6}
                         placeholder="Support information, FAQs, contact process..."
                         value={data.helpSupport}
@@ -70,11 +86,19 @@ const CompanyContentSection = ({ data, onChange }) => {
                             bg-transparent p-4 text-sm
                             focus:outline-none focus:ring-2
                             focus:ring-[var(--color-brand)]"
+                    /> */}
+                    {/* <p className="mt-2 text-xs text-[var(--text-secondary)]">
+                        Support instructions visible to customers.
+                    </p> */}
+                    
+
+                    <RichTextEditor
+                        label="Help & Support"
+                        value={data.helpSupport}
+                        onChange={(html) => onChange({ helpSupport: html })}
+                        helperText="Support instructions visible to customers."
                     />
 
-                    <p className="mt-2 text-xs text-[var(--text-secondary)]">
-                        Support instructions visible to customers.
-                    </p>
                 </div>
 
             </div>
