@@ -1,5 +1,6 @@
 
 import { Routes, Route, Navigate } from "react-router-dom";
+
 import DashboardLayout from "../layouts/DashboardLayout";
 import Dashboard from "../pages/Dashboard";
 import Dashboard2 from "../pages/Dashboard2";
@@ -10,6 +11,7 @@ import Login from "../pages/login/login";
 import FAQWrapper from "../pages/faq/FAQWrapper";
 import CategoryWrapper from "../pages/category/CategoryWrapper";
 import CompanyDetailsWrapper from "../pages/companyDetails/CompanyDetailsWrapper";
+import ChatWrapper from "../pages/chat/ChatWrapper";
 
 
 const AppRoutes = () => {
@@ -31,6 +33,7 @@ const AppRoutes = () => {
                     <Route path=":id" element={<CategoryWrapper />} ></Route>
                 </Route>
                 <Route path="/companyDetails" element={<CompanyDetailsWrapper />} ></Route>
+                <Route path="/chat" element={<ChatWrapper />} ></Route>
             </Route>
 
             {/* Fallback  */}

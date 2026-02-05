@@ -1,4 +1,13 @@
-import { FiHome, FiLayout, FiUsers, FiShoppingCart, FiHelpCircle, FiGrid } from "react-icons/fi";
+import {
+    FiHome,
+    FiLayout,
+    FiUsers,
+    FiShoppingCart,
+    FiHelpCircle,
+    FiGrid,
+    FiBriefcase,
+    FiMessageSquare
+} from "react-icons/fi";
 
 export const sidebarSections = [
     {
@@ -8,7 +17,7 @@ export const sidebarSections = [
                 label: "Dashboard 1",
                 path: "/dashboard",
                 // icon: <FiHome />
-                icon: FiHome ,
+                icon: FiHome,
             },
             {
                 label: "Dashboard 2",
@@ -43,7 +52,12 @@ export const sidebarSections = [
             {
                 label: "Company Details",
                 path: "/companyDetails",
-                icon: FiGrid,
+                icon: FiBriefcase,
+            },
+            {
+                label: "Chat Us",
+                path: "/chat",
+                icon: FiMessageSquare,
             }
         ],
     },

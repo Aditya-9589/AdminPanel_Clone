@@ -1,63 +1,30 @@
-import React, { useEffect } from "react";
-import { useEditor, EditorContent } from "@tiptap/react";
-import { editorExtensions, editorProps } from "./editorConfig";
-import EditorToolbar from "./EditorToolbar";
 
 
-const RichTextEditor = ({
-    label,
-    value,
-    onChange,
-    // placeholder,
-    helperText,
-}) => {
-    const editor = useEditor({
-        extensions: editorExtensions,
-        content: value || "",
-        editorProps,
-        onUpdate: ({ editor }) => {
-            onChange(editor.getHTML());
-        },
-    });
+import React, { useRef, useMemo } from "react";
+import JoditEditor from "jodit-react";
+import { joditConfig } from "./editorConfig";
 
-    // Sync external value (important for reset / API load)
-    useEffect(() => {
-        if (editor && value !== editor.getHTML()) {
-            editor.commands.setContent(value || "");
-        }
-    }, [value, editor]);
+const RichTextEditor = ({ value, onChange, placeholder }) => {
+    const editorRef = useRef(null);
 
-    if (!editor) return null;
+    const config = useMemo(() => ({
+        ...joditConfig,
+        placeholder: placeholder || "Start typing...",
+    }), [placeholder]);
 
     return (
-        <div>
-            {/* Label */}
-            {label && (
-                <label className="form-label mb-2 block">
-                    {label}
-                </label>
-            )}
+        <div className="rounded-xl border border-[var(--border-color)] overflow-hidden bg-white">
+            <JoditEditor
+                ref={editorRef}
+                value={value}
+                config={config}
+                onBlur={(content) => onChange(content)}
 
-            {/* Editor container */}
-            <div
-                className="
-                    rounded-xl border border-[var(--border-color)]
-                    bg-[var(--bg-card)]
-                    p-4
-                    focus-within:ring-2
-                    focus-within:ring-[var(--color-brand)]
-                "
-            >
-                <EditorToolbar editor={editor} />
-                <EditorContent editor={editor} />
-            </div>
-
-            {/* Helper text */}
-            {helperText && (
-                <p className="mt-2 text-xs text-[var(--text-secondary)]">
-                    {helperText}
-                </p>
-            )}
+                // config={{
+                //     ...joditConfig,
+                //     placeholder: placeholder || "Start typing...",
+                // }}
+            />
         </div>
     );
 };
