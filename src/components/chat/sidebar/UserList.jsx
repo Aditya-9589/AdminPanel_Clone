@@ -7,13 +7,16 @@ import UserListItem from './UserListItem'
 // dummy users (will move to chartData later)
 
 const USERS = [
-    { id: 1, name: "Ayushi" },
-    { id: 2, name: "Aditya" },
-    { id: 3, name: "Adishi" },
-    { id: 4, name: "Neil" },
-    { id: 5, name: "Aman" },
-    { id: 6, name: "Harsh" },
-    { id: 7, name: "Kapil" },
+    { id: 1, name: "Aditya Hariharno" },
+    { id: 2, name: "Ayushi Sonwane" },
+    { id: 3, name: "Adishi Kumar" },
+    { id: 4, name: "Neil Sharma" },
+    { id: 5, name: "Aman Mishra" },
+    { id: 6, name: "Harsh Parouha" },
+    { id: 7, name: "Kapil Pachori" },
+    { id: 8, name: "Deepak Tiwari" },
+    { id: 9, name: "Utkarsh Malviya" },
+    { id: 10, name: "Satyam Singh" },
 ];
 
 const UserList = ({ search, activeUserId, onSelectUser }) => {
@@ -29,7 +32,8 @@ const UserList = ({ search, activeUserId, onSelectUser }) => {
                     key={user.id}
                     user={user}
                     isActive={user.id === activeUserId}
-                    onClick={() => onSelectUser(user.id)}
+                    // onClick={() => onSelectUser(user.id)}
+                    onClick={() => onSelectUser(user)}
                 />
             ))}
 

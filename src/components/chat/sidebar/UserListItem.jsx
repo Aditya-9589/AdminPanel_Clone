@@ -7,20 +7,21 @@ const UserListItem = ({ user, isActive, onClick }) => {
         // <div>UserListItem</div>
 
         <button
-            onCLick={onClick}
+            onClick={onClick}
             className={`
                 w-full text-left px-4 py-3 text-sm
                 flex items-center gap-3
                 border-b border-[var(--border-color)]
                 transition-colors
                 ${isActive
-                    ? "bg-[var(--accent-soft-bg)] text-[var(--accent-color)]"
+                    ? "bg-[var(--chat-selected-bg)] text-[var(--chat-selected-text)]"
                     : "hover:bg-[var(--icon-hover-bg)] text-[var(--text-primary)]"
                 }
+
             `}
         >
             {/* Avatar placeholder  */}
-            <div 
+            <div
                 className="
                     h-8 w-8 rounded-full
                     flex items-center justify-center

@@ -6,10 +6,10 @@ import React, { useState } from 'react'
 import UserSearch from './UserSearch'
 import UserList from './UserList'
 
-const ChatSidebar = () => {
+const ChatSidebar = ({ activeUser, onSelectUser }) => {
 
     const [search, setSearch] = useState("");
-    const [activeUserId, setActiveUserId] = useState(null);
+    // const [activeUserId, setActiveUserId] = useState(null);
 
     return (
         <div className='h-full flex flex-col' >
@@ -20,11 +20,11 @@ const ChatSidebar = () => {
             </div>
 
             {/* User List  */}
-            <div className="flex-1 overflow-y-auto" >
+            <div className="flex-1 overflow-y-auto chat-scroll" >
                 <UserList 
                     search={search}
-                    activeUserId={activeUserId}
-                    onSelectUser={setActiveUserId}
+                    activeUserId={activeUser?.id}
+                    onSelectUser={onSelectUser}
                 />
             </div>
 
