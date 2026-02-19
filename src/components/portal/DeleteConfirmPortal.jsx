@@ -24,14 +24,14 @@ const DeleteConfirmPortal = ({
                     <button
                         onClick={onClose}
                         className="px-4 py-2 rounded-md border border-[var(--border-color)]
-                                hover:bg-[var(--icon-hover-bg)]"
+                                hover:bg-[var(--icon-hover-bg)] cursor-pointer"
                     >
                         Cancel
                     </button>
 
                     <button
                         onClick={onConfirm}
-                        className="px-4 py-2 rounded-md bg-red-600 text-white"
+                        className="px-4 py-2 rounded-md bg-red-600 text-white cursor-pointer"
                     >
                         Yes, Delete
                     </button>

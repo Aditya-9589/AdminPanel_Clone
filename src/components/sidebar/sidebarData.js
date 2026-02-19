@@ -6,7 +6,8 @@ import {
     FiHelpCircle,
     FiGrid,
     FiBriefcase,
-    FiMessageSquare
+    FiMessageSquare,
+    FiFileText,
 } from "react-icons/fi";
 
 export const sidebarSections = [
@@ -58,6 +59,11 @@ export const sidebarSections = [
                 label: "Chat Us",
                 path: "/chat",
                 icon: FiMessageSquare,
+            },
+            {
+                label: "Blogs",
+                path: "/blogs",
+                icon: FiFileText,
             }
         ],
     },

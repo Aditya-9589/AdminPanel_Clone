@@ -116,16 +116,6 @@ const CategoryPage = ({ categoryId }) => {
             />
 
 
-            <AddSubCategoryModal
-                open={isAddSubOpen}
-                onClose={() => setIsAddSubOpen(false)}
-                onSave={(data) => {
-                    console.log("Add Subcategory:", data);
-                    setIsAddSubOpen(false);
-                }}
-            />
-
-
             <UpdateCategoryModal
                 open={isUpdateOpen}
                 category={selectedCategory}
@@ -156,6 +146,16 @@ const CategoryPage = ({ categoryId }) => {
                 }}
             />
 
+
+            {/* Subcategory modal  */}
+            <AddSubCategoryModal
+                open={isAddSubOpen}
+                onClose={() => setIsAddSubOpen(false)}
+                onSave={(data) => {
+                    console.log("Add Subcategory:", data);
+                    setIsAddSubOpen(false);
+                }}
+            />
 
             <DeleteConfirmPortal
                 open={isDeleteSubOpen}

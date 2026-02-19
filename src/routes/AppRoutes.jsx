@@ -12,6 +12,7 @@ import FAQWrapper from "../pages/faq/FAQWrapper";
 import CategoryWrapper from "../pages/category/CategoryWrapper";
 import CompanyDetailsWrapper from "../pages/companyDetails/CompanyDetailsWrapper";
 import ChatWrapper from "../pages/chat/ChatWrapper";
+import BlogsWrapper from "../pages/blogs/BlogsWrapper";
 
 
 const AppRoutes = () => {
@@ -34,6 +35,10 @@ const AppRoutes = () => {
                 </Route>
                 <Route path="/companyDetails" element={<CompanyDetailsWrapper />} ></Route>
                 <Route path="/chat" element={<ChatWrapper />} ></Route>
+                <Route path="/blogs" element={<BlogsWrapper />} >
+                    <Route index element={<BlogsWrapper />} ></Route>
+                    <Route path=":slug" element={<BlogsWrapper />} ></Route>
+                </Route>
             </Route>
 
             {/* Fallback  */}
