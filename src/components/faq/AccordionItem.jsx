@@ -23,14 +23,22 @@ const AccordionItem = ({
                     onClick={() => setOpen(!open)}
                     className="flex-1"
                 >
-                    <div className="grid grid-cols-[80px_1fr_40px] px-6 py-4 text-left">
-                        <div className="text-[var(--text-secondary)]">{index}</div>
-
-                        <div className="font-medium text-[var(--text-primary)]">
-                            Q{index}: {item.question}
+                    <div className="flex items-start gap-4 px-4 py-4 sm:px-6 text-left">
+                        {/* Index — hidden on mobile */}
+                        <div className="hidden sm:block w-[50px] shrink-0 text-[var(--text-secondary)]">
+                            {index}
                         </div>
 
-                        <div className="flex justify-end text-[var(--text-secondary)]">
+                        {/* Question */}
+                        <div className="flex-1 font-medium text-[var(--text-primary)]">
+                            <span className="sm:hidden font-bold text-[var(--text-secondary)] mr-2">
+                                Q{index}.
+                            </span>
+                            {item.question}
+                        </div>
+
+                        {/* Icon */}
+                        <div className="flex shrink-0 text-[var(--text-secondary)] mt-1">
                             {open ? <FiChevronUp /> : <FiChevronDown />}
                         </div>
                     </div>
@@ -58,8 +66,10 @@ const AccordionItem = ({
 
             {/* Answer */}
             {open && (
-                <div className="grid grid-cols-[80px_1fr] px-6 pb-4 text-sm">
-                    <div></div>
+                <div className="flex items-start gap-4 px-4 pb-4 sm:px-6 text-sm">
+                    {/* Spacer for index alignment */}
+                    <div className="hidden sm:block w-[50px] shrink-0"></div>
+
                     <div className="text-[var(--text-secondary)]">
                         <span className="font-medium text-[var(--text-primary)]">
                             Ans:

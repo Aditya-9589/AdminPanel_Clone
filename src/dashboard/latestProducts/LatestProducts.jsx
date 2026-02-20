@@ -25,13 +25,13 @@ const LatestProducts = () => {
 
 
             {/* Table Container */}
-            <div className="max-h-[420px] overflow-y-auto dashboard-scroll">
+            <div className="max-h-[420px] overflow-y-auto overflow-x-auto dashboard-scroll">
 
-                <table className="w-full text-left text-sm">
+                <table className="w-full text-left text-sm min-w-[480px]">
                     <thead className="border-b border-[var(--border-color)] text-[var(--text-primary)] text-base">
                         <tr>
                             <th className="py-3 font-semibold">Products</th>
-                            <th className="py-3 pr-6 font-semibold">Payment</th>
+                            <th className="py-3 pr-6 font-semibold hidden sm:table-cell">Payment</th>
                             <th className="py-3 pl-6 font-semibold">Status</th>
                             <th className="py-3"></th>
                         </tr>
@@ -61,8 +61,8 @@ const LatestProducts = () => {
                                         </div>
                                     </td>
 
-                                    {/* Payment */}
-                                    <td className="py-4 pr-6">
+                                    {/* Payment — hidden on very small screens */}
+                                    <td className="py-4 pr-6 hidden sm:table-cell">
                                         <p className="font-medium text-[var(--text-primary)]">
                                             ${product.paid}
                                             <span className="text-[var(--text-secondary)]">
@@ -70,7 +70,6 @@ const LatestProducts = () => {
                                             </span>
                                         </p>
 
-                                        {/* <p className="text-xs text-[var(--text-secondary)] mb-2"> */}
                                         <p className="text-xs text-[var(--text-secondary)] mb-1">
                                             {percentage === 100
                                                 ? "Full paid"

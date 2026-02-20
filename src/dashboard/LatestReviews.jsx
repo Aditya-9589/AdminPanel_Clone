@@ -71,18 +71,18 @@ const LatestReviews = () => {
                 </div>
             </div>
 
-            {/* Table */}
-            <div className="overflow-visible">
-                <table className="w-full text-left text-sm">
+            {/* Table — scrolls horizontally on mobile */}
+            <div className="overflow-x-auto">
+                <table className="w-full text-left text-sm min-w-[600px]">
 
                     <thead className="border-b border-[var(--border-color)] text-[var(--text-primary)] text-base">
                         <tr>
                             <th className="py-3 pr-4 w-10">#</th>
                             <th className="py-3 pr-6 font-semibold">Products</th>
                             <th className="py-3 pr-6 font-semibold">Customer</th>
-                            <th className="py-3 pr-6 font-semibold">Reviews</th>
+                            <th className="py-3 pr-6 font-semibold hidden md:table-cell">Reviews</th>
                             <th className="py-3 pr-6 font-semibold">Status</th>
-                            <th className="py-3 pr-6 font-semibold">Date</th>
+                            <th className="py-3 pr-6 font-semibold hidden md:table-cell">Date</th>
                             <th className="py-3 text-right w-12"></th>
                         </tr>
                     </thead>
@@ -94,7 +94,7 @@ const LatestReviews = () => {
                                 className="transition hover:bg-[var(--icon-hover-bg)]/40"
                             >
                                 {/* Checkbox */}
-                                <td className="py-5 pr-4">
+                                <td className="py-4 pr-4">
                                     <input
                                         type="checkbox"
                                         className="
@@ -104,59 +104,54 @@ const LatestReviews = () => {
                                             cursor-pointer
                                         "
                                     />
-
                                 </td>
 
                                 {/* Product */}
-                                <td className="py-5 pr-6">
+                                <td className="py-4 pr-6">
                                     <div className="flex items-center gap-3">
                                         <img
                                             src={review.product.image}
                                             alt={review.product.name}
-                                            className="h-12 w-12 rounded-md object-cover"
+                                            className="h-10 w-10 rounded-md object-cover flex-shrink-0"
                                         />
-                                        <p className="max-w-[200px] text-sm font-medium text-[var(--text-primary)] line-clamp-2">
+                                        <p className="max-w-[140px] text-sm font-medium text-[var(--text-primary)] line-clamp-2">
                                             {review.product.name}
                                         </p>
                                     </div>
                                 </td>
 
                                 {/* Customer */}
-                                <td className="py-5 pr-6">
-                                    <div className="flex items-center gap-3">
+                                <td className="py-4 pr-6">
+                                    <div className="flex items-center gap-2">
                                         <img
                                             src={review.customer.avatar}
                                             alt={review.customer.name}
-                                            className="h-9 w-9 rounded-full object-cover"
+                                            className="h-8 w-8 rounded-full object-cover flex-shrink-0"
                                         />
                                         <div>
-                                            <p className="text-sm font-medium text-[var(--text-primary)]">
+                                            <p className="text-sm font-medium text-[var(--text-primary)] whitespace-nowrap">
                                                 {review.customer.name}
                                             </p>
-                                            <p className="text-xs text-[var(--text-secondary)]">
+                                            <p className="text-xs text-[var(--text-secondary)] hidden sm:block">
                                                 {review.customer.email}
                                             </p>
                                         </div>
                                     </div>
                                 </td>
 
-                                {/* Review */}
-                                <td className="py-5 pr-6 max-w-[260px]">
+                                {/* Review — hidden on mobile */}
+                                <td className="py-4 pr-6 max-w-[200px] hidden md:table-cell">
                                     <div className="flex items-center gap-1 mb-1">
                                         {[1, 2, 3, 4, 5].map((star) => (
                                             <span
                                                 key={star}
                                                 className="text-sm"
                                                 style={{
-                                                    color:
-                                                        star <= review.rating
-                                                            ? "#facc15"   // yellow-400
-                                                            : "#a1a19fff",
+                                                    color: star <= review.rating ? "#facc15" : "#a1a19fff",
                                                 }}
                                             >
                                                 ★
                                             </span>
-
                                         ))}
                                     </div>
                                     <p className="text-xs text-[var(--text-secondary)] line-clamp-2">
@@ -165,9 +160,9 @@ const LatestReviews = () => {
                                 </td>
 
                                 {/* Status */}
-                                <td className="py-5 pr-6">
+                                <td className="py-4 pr-6">
                                     <span
-                                        className={`inline-flex px-3 py-1 text-xs font-medium rounded-full border ${review.status === "confirmed"
+                                        className={`inline-flex px-2 py-1 text-xs font-medium rounded-full border whitespace-nowrap ${review.status === "confirmed"
                                             ? "bg-green-50 text-green-400 border-green-400"
                                             : "bg-red-50 text-red-400 border-red-400"
                                             }`}
@@ -176,22 +171,12 @@ const LatestReviews = () => {
                                     </span>
                                 </td>
 
-                                {/* Date */}
-                                <td className="py-5 pr-6 text-sm text-[var(--text-secondary)]">
+                                {/* Date — hidden on mobile */}
+                                <td className="py-4 pr-6 text-sm text-[var(--text-secondary)] whitespace-nowrap hidden md:table-cell">
                                     {review.date}
                                 </td>
 
-                                {/* Actions
-                                <td className="py-5 text-right">
-                                    <ActionMenu
-                                        onAdd={() => console.log("Add review")}
-                                        onEdit={() => console.log("Edit review", review.id)}
-                                        onDelete={() => console.log("Delete review", review.id)}
-                                    />
-
-                                </td> */}
-
-                                <td className="py-5 text-right">
+                                <td className="py-4 text-right">
                                     <ActionMenu
                                         items={[
                                             {

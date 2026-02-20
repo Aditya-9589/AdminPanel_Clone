@@ -44,7 +44,8 @@ const FAQPage = () => {
                 </h1>
             </div> */}
 
-            <div className="grid grid-cols-[80px_1fr_40px] py-3 text-sm font-medium
+            {/* Header Row — hidden on mobile, visible on sm+ */}
+            <div className="hidden sm:grid grid-cols-[50px_1fr_40px] py-3 text-sm font-medium
                         text-[var(--text-secondary)] border-b border-[var(--border-color)]">
                 <div>S. No.</div>
                 <div>Questions and Answers</div>

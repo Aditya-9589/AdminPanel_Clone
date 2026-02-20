@@ -70,17 +70,17 @@ const ProductsTable = () => {
                 </button>
             </div>
 
-            {/* Table */}
+            {/* Table — scrolls horizontally on mobile */}
             <div className="overflow-x-auto">
-                <table className="w-full text-sm">
+                <table className="w-full text-sm min-w-[520px]">
                     <thead className="border-b border-[var(--border-color)]">
                         <tr className="text-left text-[var(--text-secondary)]">
                             <th className="py-3">Product</th>
                             <th className="py-3">Category</th>
-                            <th className="py-3">Brand</th>
+                            <th className="py-3 hidden md:table-cell">Brand</th>
                             <th className="py-3">Price</th>
                             <th className="py-3">Stock</th>
-                            <th className="py-3">Created</th>
+                            <th className="py-3 hidden md:table-cell">Created</th>
                             <th className="py-3 text-right">Actions</th>
                         </tr>
                     </thead>
@@ -96,31 +96,33 @@ const ProductsTable = () => {
                                         <img
                                             src={product.image}
                                             alt={product.name}
-                                            className="h-10 w-10 rounded-md object-cover"
+                                            className="h-10 w-10 rounded-md object-cover flex-shrink-0"
                                         />
-                                        <span className="font-medium text-[var(--text-primary)]">
+                                        <span className="font-medium text-[var(--text-primary)] max-w-[120px] sm:max-w-[180px] line-clamp-2">
                                             {product.name}
                                         </span>
                                     </div>
                                 </td>
 
-                                <td className="py-4 text-[var(--text-primary)]">
+                                {/* Category */}
+                                <td className="py-4 text-[var(--text-primary)] whitespace-nowrap">
                                     {product.category}
                                 </td>
 
-                                <td className="py-4 text-[var(--text-primary)]">
+                                {/* Brand — hidden on mobile */}
+                                <td className="py-4 text-[var(--text-primary)] whitespace-nowrap hidden md:table-cell">
                                     {product.brand}
                                 </td>
 
-                                <td className="py-4 text-[var(--text-primary)]">
-                                    {/* {product.price} */}
-                                    $ {product.price}
+                                {/* Price */}
+                                <td className="py-4 text-[var(--text-primary)] whitespace-nowrap">
+                                    ${product.price}
                                 </td>
 
                                 {/* Stock badge */}
                                 <td className="py-4">
                                     <span
-                                        className={`px-3 py-1 rounded-full text-xs font-medium border
+                                        className={`px-2 py-1 rounded-full text-xs font-medium border whitespace-nowrap
                                             ${product.stock === "In Stock"
                                                 ? "bg-green-50 text-green-600 border-green-400"
                                                 : "bg-red-50 text-red-600 border-red-400"
@@ -130,7 +132,8 @@ const ProductsTable = () => {
                                     </span>
                                 </td>
 
-                                <td className="py-4 text-[var(--text-secondary)]">
+                                {/* Created — hidden on mobile */}
+                                <td className="py-4 text-[var(--text-secondary)] whitespace-nowrap hidden md:table-cell">
                                     {product.createdAt}
                                 </td>
 
@@ -169,24 +172,20 @@ const ProductsTable = () => {
                 </table>
 
                 {/* Pagination */}
-                < div className="flex items-center justify-between mt-6 text-sm" >
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-6 text-sm">
                     <p className="text-[var(--text-secondary)]">
-                        Showing {startIndex + 1} to{" "}
-                        {Math.min(startIndex + ITEMS_PER_PAGE, productsData.length)} of{" "}
-                        {productsData.length}
+                        Showing {startIndex + 1}–{Math.min(startIndex + ITEMS_PER_PAGE, productsData.length)} of {productsData.length}
                     </p>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 flex-wrap">
                         <button
                             disabled={currentPage === 1}
                             onClick={() => setCurrentPage((p) => p - 1)}
                             className="px-3 py-1 rounded-md border border-[var(--border-color)]
-                                    disabled:opacity-50 hover:bg-[var(--icon-hover-bg)]"
+                                    disabled:opacity-50 hover:bg-[var(--icon-hover-bg)] transition"
                         >
                             Prev
                         </button>
-
-
 
                         {Array.from(
                             { length: endPage - startPage + 1 },
@@ -197,7 +196,7 @@ const ProductsTable = () => {
                                 onClick={() => setCurrentPage(page)}
                                 className={`px-3 py-1 rounded-md border
                                     ${currentPage === page
-                                        ? "bg-[var(--color-brand)] text-white"
+                                        ? "bg-[var(--color-brand)] text-white border-[var(--color-brand)]"
                                         : "border-[var(--border-color)] hover:bg-[var(--icon-hover-bg)]"
                                     }`}
                             >
@@ -209,7 +208,7 @@ const ProductsTable = () => {
                             disabled={currentPage === totalPages}
                             onClick={() => setCurrentPage((p) => p + 1)}
                             className="px-3 py-1 rounded-md border border-[var(--border-color)]
-                                    disabled:opacity-50 hover:bg-[var(--icon-hover-bg)]"
+                                    disabled:opacity-50 hover:bg-[var(--icon-hover-bg)] transition"
                         >
                             Next
                         </button>
@@ -218,18 +217,6 @@ const ProductsTable = () => {
 
             </div>
 
-            {/* <DeleteConfirmPortal
-                open={isDeleteOpen}
-                onClose={() => {
-                    setIsDeleteOpen(false);
-                    setDeleteProductId(null);
-                }}
-                onConfirm={() => {
-                    console.log("Confirm delete:", deleteProductId);
-                    setIsDeleteOpen(false);
-                    setDeleteProductId(null);
-                }}
-            /> */}
 
             <DeleteConfirmPortal
                 open={isDeleteOpen}

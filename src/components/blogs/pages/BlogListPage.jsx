@@ -98,7 +98,7 @@ const BlogListPage = () => {
             {blogs.length > 0 && (
                 <div className="flex items-center justify-between mt-6 text-sm">
                     <p className="text-[var(--text-secondary)]">
-                        showing {startIndex + 1} to{" "}
+                        Showing {startIndex + 1} to{" "}
                         {Math.min(startIndex + ITEMS_PER_PAGE, blogs.length)} of{" "}
                         {blogs.length}
                     </p>

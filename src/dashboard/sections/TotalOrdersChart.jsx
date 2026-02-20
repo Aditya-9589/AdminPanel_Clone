@@ -15,7 +15,7 @@ import { tooltipVariants } from "../../charts/tooltips/Variants";
 
 const TotalOrdersChart = () => {
     return (
-        <div className="bg-[var(--bg-card)] rounded-xl p-6 shadow-sm w-[48rem]">
+        <div className="bg-[var(--bg-card)] rounded-xl p-6 shadow-sm w-full h-full">
 
             {/* HEADER */}
             <div className="flex items-center justify-between mb-6">

@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from "react";
 import MessageList from "./MessageList";
 import ChatInput from "./ChatInput";
-import ConversationHeader from "./COnversationHeader";
+import ConversationHeader from "./ConversationHeader";
 
-const ChatWindow = ({ activeUser }) => {
+const ChatWindow = ({ activeUser, onBack }) => {
     // const [messages, setMessages] = useState([
     //     { id: 1, sender: "user", text: "Hi Neil, how are you?" },
     //     { id: 2, sender: "admin", text: "Hello Aditya" },
@@ -50,16 +50,20 @@ const ChatWindow = ({ activeUser }) => {
     }
 
     return (
-        <div className="h-full flex flex-col bg-[var(--bg-page)]">
+        <div className="h-full flex flex-col bg-[var(--bg-page)] w-full relative">
 
             {/* Conversation Header  */}
-            <ConversationHeader user={activeUser} />
+            <ConversationHeader user={activeUser} onBack={onBack} />
 
             {/* Messages  */}
-            <MessageList messages={messages} />
+            <div className="flex-1 overflow-y-auto min-h-0">
+                <MessageList messages={messages} />
+            </div>
 
             {/* Input  */}
-            <ChatInput onSend={handleSend} />
+            <div className="shrink-0">
+                <ChatInput onSend={handleSend} />
+            </div>
 
         </div>
     );

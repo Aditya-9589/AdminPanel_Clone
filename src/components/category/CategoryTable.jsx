@@ -40,33 +40,34 @@ const CategoryTable = ({ categoryId, onEdit, onDelete }) => {
     return (
         <div className="mt-4 overflow-x-auto">
 
-            {/* Table  */}
-            <table className="w-full text-sm">
-                {/* Table Head */}
-                <thead className="border-b border-[var(--border-color)]">
-                    <tr className="text-left text-[var(--text-secondary)]">
-                        {/* <th className="py-3">Product</th>
+            {/* Table — scrolls horizontally on mobile */}
+            <div className="overflow-x-auto">
+                <table className="w-full text-sm min-w-[500px]">
+                    {/* Table Head */}
+                    <thead className="border-b border-[var(--border-color)]">
+                        <tr className="text-left text-[var(--text-secondary)]">
+                            {/* <th className="py-3">Product</th>
                         <th className="py-3">Category</th>
                         <th className="py-3">Created</th>
                         <th className="py-3 text-right">Actions</th> */}
 
-                        <th>Image</th>
-                        <th>Category</th>
-                        <th>Created</th>
-                        <th className="text-right">Actions</th>
+                            <th className="py-3 pl-4">Image</th>
+                            <th className="py-3">Category</th>
+                            <th className="py-3 hidden md:table-cell">Created</th>
+                            <th className="py-3 pr-4 text-right">Actions</th>
 
-                    </tr>
-                </thead>
+                        </tr>
+                    </thead>
 
-                {/* Table Body */}
-                <tbody className="divide-y divide-[var(--border-color)]">
-                    {currentItems.map((item) => (
-                        <tr key={item.id}>
+                    {/* Table Body */}
+                    <tbody className="divide-y divide-[var(--border-color)]">
+                        {currentItems.map((item) => (
+                            <tr key={item.id}>
 
-                            {/* Product */}
-                            <td className="py-4">
-                                <div className="flex items-center gap-3">
-                                    {/* <img
+                                {/* Product */}
+                                <td className="py-4">
+                                    <div className="flex items-center gap-3">
+                                        {/* <img
                                         src={item.image}
                                         alt={item.product}
                                         className="h-10 w-10 rounded-md object-cover"
@@ -75,118 +76,121 @@ const CategoryTable = ({ categoryId, onEdit, onDelete }) => {
                                         {item.product}
                                     </span> */}
 
-                                    <img 
-                                        src={item.image} 
-                                        alt={item.name}
-                                        className="h-10 w-10 rounded-md object-cover" 
-                                    />
-                                    <span className="font-medium text-[var(--text-primary)]" >
-                                        {item.name}
-                                    </span>
-                                </div>
-                            </td>
+                                        <img
+                                            src={item.image}
+                                            alt={item.name}
+                                            className="h-10 w-10 rounded-md object-cover"
+                                        />
+                                        <span className="font-medium text-[var(--text-primary)]" >
+                                            {item.name}
+                                        </span>
+                                    </div>
+                                </td>
 
-                            {/* Category */}
-                            {/* <td className="py-4 text-[var(--text-primary)]">
+                                {/* Category */}
+                                {/* <td className="py-4 text-[var(--text-primary)]">
                                 {item.category}
                             </td> */}
-                            <td className="text-[var(--text-secondary)]" >
-                                {item.name}
-                            </td>
+                                <td className="py-4 text-[var(--text-primary)] font-medium whitespace-nowrap" >
+                                    {item.name}
+                                </td>
 
-                            {/* Created */}
-                            <td className="py-4 text-[var(--text-secondary)]">
-                                {item.createdAt}
-                            </td>
+                                {/* Created — hidden on mobile */}
+                                <td className="py-4 text-[var(--text-secondary)] whitespace-nowrap hidden md:table-cell">
+                                    {item.createdAt}
+                                </td>
 
-                            {/* Actions */}
-                            <td className="py-4 text-right">
-                                <ActionMenu
-                                    items={[
-                                        // View only on main category page
-                                        !categoryId && {
-                                            label: "View",
-                                            icon: <EyeIcon className="h-4 w-4" />,
-                                            onClick: () => navigate(`/category/${item.id}`),
-                                        },
-                                        {
-                                            label: "Edit",
-                                            icon: <PencilSquareIcon className="h-4 w-4" />,
-                                            onClick: () => onEdit?.(item),
-                                        },
-                                        {
-                                            label: "Delete",
-                                            icon: <TrashIcon className="h-4 w-4" />,
-                                            danger: true,
-                                            onClick: () => onDelete?.(item),
-                                        },
-                                    ].filter(Boolean)}
-                                />
-                            </td>
+                                {/* Actions */}
+                                <td className="py-4 text-right">
+                                    <ActionMenu
+                                        items={[
+                                            // View only on main category page
+                                            !categoryId && {
+                                                label: "View",
+                                                icon: <EyeIcon className="h-4 w-4" />,
+                                                onClick: () => navigate(`/category/${item.id}`),
+                                            },
+                                            {
+                                                label: "Edit",
+                                                icon: <PencilSquareIcon className="h-4 w-4" />,
+                                                onClick: () => onEdit?.(item),
+                                            },
+                                            {
+                                                label: "Delete",
+                                                icon: <TrashIcon className="h-4 w-4" />,
+                                                danger: true,
+                                                onClick: () => onDelete?.(item),
+                                            },
+                                        ].filter(Boolean)}
+                                    />
+                                </td>
 
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
 
             {/* Pagination  */}
-            {filteredData.length > 0 && (
-                <div className="flex items-center justify-between mt-6 text-sm" >
-                    <p className="text-[var(--text-secondary)]" >
-                        showing {startIndex + 1} to {" "}
-                        {Math.min(startIndex + ITEMS_PER_PAGE, filteredData.length)} of{" "}
-                        {filteredData.length}
-                    </p>
+            {
+                filteredData.length > 0 && (
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-6 text-sm">
+                        <p className="text-[var(--text-secondary)]">
+                            Showing {startIndex + 1}–{Math.min(startIndex + ITEMS_PER_PAGE, filteredData.length)} of {filteredData.length}
+                        </p>
 
-                    <div className="flex items-center gap-2" >
-                        <button
-                            disabled={currentPage === 1}
-                            onClick={() => setCurrentPage((p) => p - 1)}
-                            className="px-3 py-1 rounded-md border border-[var(--border-color)]
-                                disabled:opacity-50 hover:bg-[var(--icon-hover-bg)]"
-                        >
-                            Prev
-                        </button>
-
-                        {Array.from(
-                            { length: endPage - startPage + 1 },
-                            (_, i) => startPage + i
-                        ).map((page) => (
+                        <div className="flex items-center gap-2 flex-wrap">
                             <button
-                                key={page}
-                                onClick={() => setCurrentPage(page)}
-                                className={`px-3 py-1 rounded-md border
-                                    ${currentPage === page
-                                        ? "bg-[var(--color-brand)] text-white"
-                                        : "border-[var(--border-color)] hover:bg-[var(--icon-hover-bg)]"
-                                    }
-                                    `}
+                                disabled={currentPage === 1}
+                                onClick={() => setCurrentPage((p) => p - 1)}
+                                className="px-3 py-1 rounded-md border border-[var(--border-color)]
+                                disabled:opacity-50 hover:bg-[var(--icon-hover-bg)]"
                             >
-                                {page}
+                                Prev
                             </button>
-                        ))}
 
-                        <button
-                            disabled={currentPage === totalPages}
-                            onClick={() => setCurrentPage((p) => p + 1)}
-                            className="px-3 py-1 rounded-md border border-[var(--border-color)]
+                            {Array.from(
+                                { length: endPage - startPage + 1 },
+                                (_, i) => startPage + i
+                            ).map((page) => (
+                                <button
+                                    key={page}
+                                    onClick={() => setCurrentPage(page)}
+                                    className={`px-3 py-1 rounded-md border
+                                    ${currentPage === page
+                                            ? "bg-[var(--color-brand)] text-white"
+                                            : "border-[var(--border-color)] hover:bg-[var(--icon-hover-bg)]"
+                                        }
+                                    `}
+                                >
+                                    {page}
+                                </button>
+                            ))}
+
+                            <button
+                                disabled={currentPage === totalPages}
+                                onClick={() => setCurrentPage((p) => p + 1)}
+                                className="px-3 py-1 rounded-md border border-[var(--border-color)]
                                 disabled:opacity-50 hover:bg-[var(--icon-hover-bg)]
                             "
-                        >
-                            Next
-                        </button>
+                            >
+                                Next
+                            </button>
+                        </div>
                     </div>
-                </div>
 
-            )}
+                )
+            }
 
             {/* Empty state */}
-            {filteredData.length === 0 && (
-                <div className="py-10 text-center text-sm text-[var(--text-secondary)]">
-                    No categories found.
-                </div>
-            )}
-        </div>
+            {
+                filteredData.length === 0 && (
+                    <div className="py-10 text-center text-sm text-[var(--text-secondary)]">
+                        No categories found.
+                    </div>
+                )
+            }
+        </div >
     );
 };
 
