@@ -8,6 +8,7 @@ import {
     FiBriefcase,
     FiMessageSquare,
     FiFileText,
+    FiShield,
 } from "react-icons/fi";
 
 export const sidebarSections = [
@@ -64,6 +65,11 @@ export const sidebarSections = [
                 label: "Blogs",
                 path: "/blogs",
                 icon: FiFileText,
+            },
+            {
+                label: "Roles & Permissions",
+                path: "/roles-permissions",
+                icon: FiShield,
             }
         ],
     },

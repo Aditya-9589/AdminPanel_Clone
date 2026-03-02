@@ -13,6 +13,7 @@ import CategoryWrapper from "../pages/category/CategoryWrapper";
 import CompanyDetailsWrapper from "../pages/companyDetails/CompanyDetailsWrapper";
 import ChatWrapper from "../pages/chat/ChatWrapper";
 import BlogsWrapper from "../pages/blogs/BlogsWrapper";
+import RolesAndPermissionsWrapper from "../pages/rolesAndPermissions/RolesAndPermissionsWrapper";
 
 
 const AppRoutes = () => {
@@ -39,6 +40,7 @@ const AppRoutes = () => {
                     <Route index element={<BlogsWrapper />} ></Route>
                     <Route path=":slug" element={<BlogsWrapper />} ></Route>
                 </Route>
+                <Route path="/roles-permissions" element={<RolesAndPermissionsWrapper />} ></Route>
             </Route>
 
             {/* Fallback  */}
